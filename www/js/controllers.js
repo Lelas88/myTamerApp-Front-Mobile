@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['starter.services'])
 
-  .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
+  .controller('AppCtrl', function ($scope, $state, $timeout, $ionicModal, Auth) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -11,6 +11,11 @@ angular.module('starter.controllers', ['starter.services'])
 
     // Form data for the login modal
     $scope.loginData = {};
+
+    $scope.logout = function () {
+      Auth.logout();
+      $state.go("login");
+    };
 
     // Create the login modal that we will use later
     $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -31,21 +36,20 @@ angular.module('starter.controllers', ['starter.services'])
 
     // Perform the login action when the user submits the login form
     $scope.doLogin = function () {
-      console.log('Doing login', $scope.loginData);
 
-      // Simulate a login delay. Remove this and replace with your login
-      // code if using a login system
       $timeout(function () {
-        $scope.closeLogin();
+        if (!angular.isDefined($scope.loginData.username) || !angular.isDefined($scope.loginData.password)
+          || $scope.loginData.username.trim() == "" || $scope.loginData.password.trim() == "") {
+          alert("Enter both user name and password");
+          return;
+        } else if($scope.loginData.username.trim() == 'test' && $scope.loginData.password.trim() == 'test') {
+          Auth.setUser({
+            username: $scope.loginData.username
+          });
+          $state.go("app.dashboard");
+        } else {
+          alert("Entered login or/and password was incorrect");
+        }
       }, 1000);
     };
-  })
-
-  //Sessions Controller
-  .controller('SessionsCtrl', function ($scope, Session) {
-    $scope.sessions = Session.query();
-  })
-
-  .controller('SessionCtrl', function ($scope, $stateParams, Session) {
-    $scope.session = Session.get({sessionId: $stateParams.sessionId});
   });

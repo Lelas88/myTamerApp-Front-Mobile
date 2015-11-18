@@ -1,0 +1,82 @@
+{
+  "_args": [
+    [
+      "angular-cookies",
+      "C:\\Users\\rober\\Desktop\\MAGISTERKA\\Front\\mytamer"
+    ]
+  ],
+  "_from": "angular-cookies@*",
+  "_id": "angular-cookies@1.4.7",
+  "_inCache": true,
+  "_location": "/angular-cookies",
+  "_nodeVersion": "0.10.26",
+  "_npmUser": {
+    "email": "angular-core+npm@google.com",
+    "name": "angularcore"
+  },
+  "_npmVersion": "2.0.2",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "angular-cookies",
+    "raw": "angular-cookies",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "*",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular-cookies/-/angular-cookies-1.4.7.tgz",
+  "_shasum": "03c1ead86cc7f80c322e43ed47106a63cb94daf7",
+  "_shrinkwrap": null,
+  "_spec": "angular-cookies",
+  "_where": "C:\\Users\\rober\\Desktop\\MAGISTERKA\\Front\\mytamer",
+  "author": {
+    "email": "angular-core+npm@google.com",
+    "name": "Angular Core Team"
+  },
+  "bugs": {
+    "url": "https://github.com/angular/angular.js/issues"
+  },
+  "dependencies": {},
+  "description": "AngularJS module for cookies",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "03c1ead86cc7f80c322e43ed47106a63cb94daf7",
+    "tarball": "http://registry.npmjs.org/angular-cookies/-/angular-cookies-1.4.7.tgz"
+  },
+  "gitHead": "083c164d49ab007e7725b77b9f46095679db010f",
+  "homepage": "http://angularjs.org",
+  "installable": true,
+  "keywords": [
+    "angular",
+    "browser",
+    "client-side",
+    "cookies",
+    "framework"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "angularcore",
+      "email": "angular-core+npm@google.com"
+    },
+    {
+      "name": "petebd",
+      "email": "pete@bacondarwin.com"
+    }
+  ],
+  "name": "angular-cookies",
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angular/angular.js.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.4.7"
+}

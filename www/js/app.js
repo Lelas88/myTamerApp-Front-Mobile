@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller', 'activity.controllers'])
+angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller', 'activity.controller'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -22,21 +22,33 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
     });
   })
 
+
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
 
       .state('app', {
-        url: '/app',
+        url: "/app",
         abstract: true,
-        templateUrl: 'templates/menu.html',
-        controller: 'AppCtrl'
+        templateUrl: "templates/menu.html",
+        controller: 'AppCtrl',
+        onEnter: function ($state, Auth) {
+          if (!Auth.isLoggedIn()) {
+            $state.go('login');
+          }
+        }
+      })
+
+      .state('login', {
+        url: '/login',
+        controller: 'AppCtrl',
+        templateUrl: 'templates/login.html'
       })
 
       .state('app.dashboard', {
         url: "/dashboard",
         views: {
           'menuContent': {
-            templateUrl: "templates/dashboard/index.html",
+            templateUrl: "templates/views/dashboard.html",
             controller: 'DashboardCtrl'
           }
         }
@@ -46,7 +58,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
         url: "/activities",
         views: {
           'menuContent': {
-            templateUrl: "templates/activities/index.html",
+            templateUrl: "templates/views/activities.html",
             controller: 'ActivitiesCtrl'
           }
         }
@@ -56,31 +68,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
         url: "/activities/:activityId",
         views: {
           'menuContent': {
-            templateUrl: "templates/activities/single.html",
+            templateUrl: "templates/views/activity.html",
             controller: 'ActivityCtrl'
           }
         }
-      })
-
-      .state('app.sessions', {
-        url: "/sessions",
-        views: {
-          'menuContent': {
-            templateUrl: "templates/sessions.html",
-            controller: 'SessionsCtrl'
-          }
-        }
-      })
-
-      .state('app.session', {
-        url: "/sessions/:sessionId",
-        views: {
-          'menuContent': {
-            templateUrl: "templates/session.html",
-            controller: 'SessionCtrl'
-          }
-        }
       });
+
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/dashboard');
   });
