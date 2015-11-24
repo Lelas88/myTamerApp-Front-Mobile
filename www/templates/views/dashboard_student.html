@@ -1,0 +1,44 @@
+<ion-slide-box on-slide-changed="slideHasChanged($index)">
+  <ion-slide ng-repeat="student in students">
+    <div class="dashboard-student-data">
+      <div class="column">
+        <p class="attribute-name">First Name:</p>
+
+        <p class="attribute-name">Student ID:</p>
+
+        <p class="attribute-name">Last Name:</p>
+
+        <p class="attribute-name">Birthdate:</p>
+
+        <p class="attribute-name">Age:</p>
+
+        <p class="attribute-name">Weight:</p>
+
+        <p class="attribute-name">Height:</p>
+
+        <p class="attribute-name">BMI:</p>
+      </div>
+      <div class="column">
+        <p class="attribute-value">{{student.id}}</p>
+
+        <p class="attribute-value">{{student.first_name}}</p>
+
+        <p class="attribute-value">{{student.last_name}}</p>
+
+        <p class="attribute-value">{{changeDateFormat(student.birthdate)}}</p>
+
+        <p class="attribute-value">{{countAge(student.birthdate)}}</p>
+
+        <p class="attribute-value">{{student.weight}}</p>
+
+        <p class="attribute-value">{{student.height}}</p>
+
+        <p class="attribute-value">
+          <span ng-class="{blue: student.bmi_status == 1, green: student.bmi_status == 2, orange: student.bmi_status == 3, red: student.bmi_status == 4}">
+            {{student.bmi}}
+          </span>
+        </p>
+      </div>
+    </div>
+  </ion-slide>
+</ion-slide-box>

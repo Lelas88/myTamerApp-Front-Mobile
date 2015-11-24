@@ -1,29 +1,40 @@
-<ion-view view-title={{dashboard[0].title}}>
+<ion-view view-title="Dashboard" ng-controller="DashboardCtrl">
   <ion-content>
-    <h3>Welcome {{sometext}}</h3>
-    <div class="list card">
-      <div class="item">
-        <h3>{{dashboard[0].title}}</h3>
+
+    <div class="card">
+      <div class="item item-divider">
+        Your groups
+      </div>
+      <div class="item item-text-wrap">
+        <select name="myGroups" id="myGroups"
+                ng-options="group.name for group in groups track by group.id"
+                ng-model="selectedGroup"
+                ng-change="getStudents(selectedGroup.id)"
+                novalidate="">
+        </select>
       </div>
     </div>
+
+    <div class="card">
+      <div class="item item-divider">
+        Group: {{selectedGroup.name}}
+      </div>
+      <div class="item item-text-wrap">
+        <ng-include src="'/templates/views/dashboard_student.html'"></ng-include>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="item item-divider">
+        {{chosenStudent.first_name}} {{chosenStudent.last_name}}
+      </div>
+      <ng-include src="'/templates/views/dashboard_charts.html'"></ng-include>
+    </div>
+
+
   </ion-content>
+
+
+  <!-- include bottom menu -->
+  <!--<ng-include src="'/templates/bottom_menu.html'"></ng-include>-->
 </ion-view>
-<ion-tabs class="tabs-icon-top tabs-positive">
-
-  <ion-tab title="Home" icon="ion-home" href="#/tab/home">
-    <ion-nav-view name="home-tab"></ion-nav-view>
-  </ion-tab>
-
-  <ion-tab title="About" icon="ion-ios-information" href="#/tab/about">
-    <ion-nav-view name="about-tab"></ion-nav-view>
-  </ion-tab>
-
-  <ion-tab title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
-    <ion-nav-view name="settings-tab"></ion-nav-view>
-  </ion-tab>
-
-  <ion-tab title="Logout" icon="ion-log-out" ng-click="logout()">
-    <ion-nav-view name="logout-tab"></ion-nav-view>
-  </ion-tab>
-
-</ion-tabs>

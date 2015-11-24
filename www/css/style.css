@@ -1,1 +1,35 @@
 /* Empty. Add your own CSS if you like */
+
+.dashboard-student-data {
+  width: 100%;
+}
+.dashboard-student-data .column {
+  float: left;
+  width: 50%;
+  padding-bottom: 60px;
+}
+#myGroups {
+  width: 100%;
+  font-size: 15px;
+}
+.red {
+  color: red;
+  font-weight: bold;
+}
+.orange {
+  color: orange;
+  font-weight: bold;
+}
+.green {
+  color: green;
+  font-weight: bold;
+}
+.blue {
+  color: blue;
+  font-weight: bold;
+}
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

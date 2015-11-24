@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller', 'activity.controller'])
+angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller', 'activity.controller', 'beacons.controller'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -21,7 +21,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
       }
     });
   })
-
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -50,6 +49,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
           'menuContent': {
             templateUrl: "templates/views/dashboard.html",
             controller: 'DashboardCtrl'
+          }
+        }
+      })
+
+      .state('app.surroundings', {
+        url: "/surroundings",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/surroundings.html",
+            controller: 'BeaconsCtrl'
           }
         }
       })
