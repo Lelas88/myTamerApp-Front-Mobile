@@ -1,6 +1,5 @@
 <ion-view view-title="Dashboard" ng-controller="DashboardCtrl">
   <ion-content>
-
     <div class="card">
       <div class="item item-divider">
         Your groups
@@ -26,7 +25,7 @@
 
     <div class="card">
       <div class="item item-divider">
-        {{chosenStudent.first_name}} {{chosenStudent.last_name}}
+        {{chosenStudent.firstName}} {{chosenStudent.lastName}}
       </div>
       <ng-include src="'/templates/views/dashboard_charts.html'"></ng-include>
     </div>

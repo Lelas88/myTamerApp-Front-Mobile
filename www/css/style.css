@@ -33,3 +33,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.student-photo {
+  width: 100%;
+  height: auto;
+}
