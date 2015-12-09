@@ -18,6 +18,10 @@ angular.module('dashboard.controller', ['dashboard.services', 'chart.js'])
       setChartData($scope.students[index].id);
     };
 
+    $scope.getStudents = function(groupId) {
+      renderStudents(groupId);
+    };
+
     function getUserId() {
       Dashboard.getUserId()
         .success(function (data) {
@@ -37,19 +41,20 @@ angular.module('dashboard.controller', ['dashboard.services', 'chart.js'])
           $scope.groups = data;
           $scope.selectedGroup = data[0];
 
-          renderStudents($scope.selectedGroup);
+          renderStudents($scope.selectedGroup.id);
         })
         .error(function (e) {
           $scope.status = 'Unable to load groups: ' + e.message;
         });
     }
 
-    function renderStudents(group) {
-      Dashboard.getStudents(group.id)
+    function renderStudents(groupId) {
+      Dashboard.getStudents(groupId)
         .success(function (data) {
           $scope.students = data;
           $scope.chosenStudent = data[0];
 
+          clearTables();
           setChartData(data[0].id);
 
           $ionicSlideBoxDelegate.update();
@@ -63,8 +68,6 @@ angular.module('dashboard.controller', ['dashboard.services', 'chart.js'])
     function setChartData(studentId) {
       Dashboard.getChartData(studentId)
         .success(function (data) {
-          clearTables();
-
           for (var i = 0; i < data.heights.length; i++) {
             $scope.height_labels.push(data.heights[i].date);
             height_data_array.push(data.heights[i].value);
@@ -111,10 +114,8 @@ angular.module('dashboard.controller', ['dashboard.services', 'chart.js'])
       $scope.weight_series = [];
       $scope.height_series = [];
       $scope.weight_labels = [];
-      $scope.weight_data = [];
       $scope.height_labels = [];
+      $scope.weight_data = [];
       $scope.height_data = [];
-      $scope.weight_series = [];
-      $scope.height_series = [];
     }
   });

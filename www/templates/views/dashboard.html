@@ -1,4 +1,4 @@
-<ion-view view-title="Dashboard" ng-controller="DashboardCtrl">
+<ion-view view-title="Dashboard">
   <ion-content>
     <div class="card">
       <div class="item item-divider">
@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" ng-if="chosenStudent.weight > 0 || chosenStudent.height > 0">
       <div class="item item-divider">
         {{chosenStudent.firstName}} {{chosenStudent.lastName}}
       </div>

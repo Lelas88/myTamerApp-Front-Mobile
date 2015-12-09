@@ -1,26 +1,10 @@
 
-  <div class="item item-text-wrap">
+  <div class="item item-text-wrap" ng-if="weight_data[0].length > 0">
     <canvas id="weight_bar" class="chart chart-line" chart-data="weight_data" chart-labels="weight_labels" chart-legend="true"
             chart-series="weight_series" chart-options="{showTooltips: false}" chart-colours="weight_colours"></canvas>
   </div>
-  <!--<div class="item item-text-wrap">
-    <button ng-click="weightBarArea()" class="btn btn-success">
-      Bar
-    </button>
-    <button ng-click="weightLineArea()" class="btn btn-success">
-      Line
-    </button>
-  </div>-->
 
-  <div class="item item-text-wrap">
+  <div class="item item-text-wrap" ng-if="height_data[0].length > 0">
     <canvas id="height_bar" class="chart chart-line" chart-data="height_data" chart-labels="height_labels" chart-legend="true"
             chart-series="height_series" chart-options="{showTooltips: false}" chart-colours="height_colours"></canvas>
   </div>
-  <!--<div class="item item-text-wrap">
-    <button ng-click="heightBarType()" class="btn btn-success">
-      Bar
-    </button>
-    <button ng-click="heightLineType()" class="btn btn-success">
-      Line
-    </button>
-  </div>-->
