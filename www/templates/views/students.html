@@ -1,9 +1,31 @@
 <ion-view view-title="Students">
   <ion-content>
-    <ion-list>
-      <ion-item menu-close href="#/app/dashboard">
-        Dashboard
+    <ion-list ng-repeat="student in students">
+
+      <ion-item menu-close href="#/app/students/{{student.id}}">
+        <div class="row">
+
+          <div class="col">
+            <div class="row list-main">
+              <p>{{student.firstName}} {{student.lastName}}</p>
+            </div>
+            <div class="row list-details">
+              <p>{{student.age}} years old</p>
+            </div>
+            <div class="row list-details">
+              <p>{{student.groupName}}</p>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="list-image-container"
+                 style="background-image: url('./img/userImages/{{student.photoName}}');">
+            </div>
+          </div>
+
+        </div>
       </ion-item>
+
     </ion-list>
   </ion-content>
 </ion-view>

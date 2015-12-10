@@ -23,6 +23,11 @@ angular.module('starter.services', ['ngResource', 'ngCookies', 'constants'])
         _user = null;
       }
     }
+  })
+  .service('User', function ($http, MYTAMER, Auth) {
+    this.getUserId = function () {
+      return $http.get(MYTAMER.url + '/user/getId?username=' + Auth.getUser());
+    };
   });
 
 /* ------------------------------------------------------------- */

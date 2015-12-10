@@ -1,29 +1,40 @@
 /**
  * Created by rober on 16.11.2015.
  */
-angular.module('dashboard.controller', ['dashboard.services', 'chart.js'])
+angular.module('dashboard.controller', ['starter.services', 'dashboard.services', 'chart.js'])
   //Dashboard Controller
-  .controller('DashboardCtrl', function ($scope, $http, $ionicSlideBoxDelegate, Dashboard) {
+  .controller('DashboardCtrl', function ($scope, $http, $ionicSlideBoxDelegate, User, Dashboard) {
 
     var weight_data_array = [];
     var height_data_array = [];
+    var selectedGroup;
+
+    clearTables();
+    getUserId();
+    initiateChartData();
 
     $scope.$on('$ionicView.beforeEnter', function () {
-      getUserId();
-      initiateChartData();
+      if(selectedGroup != null) {
+        renderStudents(selectedGroup);
+      } else {
+        getUserId();
+        initiateChartData();
+      }
     });
 
     $scope.slideHasChanged = function (index) {
       $scope.chosenStudent = $scope.students[index];
+      clearTables();
       setChartData($scope.students[index].id);
     };
 
     $scope.getStudents = function(groupId) {
+      selectedGroup = groupId;
       renderStudents(groupId);
     };
 
     function getUserId() {
-      Dashboard.getUserId()
+      User.getUserId()
         .success(function (data) {
           $scope.userId = data;
           if (data != null) {
@@ -39,7 +50,9 @@ angular.module('dashboard.controller', ['dashboard.services', 'chart.js'])
       Dashboard.getGroups(userId)
         .success(function (data) {
           $scope.groups = data;
-          $scope.selectedGroup = data[0];
+          if ($scope.selectedGroup == null) {
+            $scope.selectedGroup = data[0];
+          }
 
           renderStudents($scope.selectedGroup.id);
         })
@@ -52,7 +65,9 @@ angular.module('dashboard.controller', ['dashboard.services', 'chart.js'])
       Dashboard.getStudents(groupId)
         .success(function (data) {
           $scope.students = data;
-          $scope.chosenStudent = data[0];
+          if ($scope.chosenStudent == null) {
+            $scope.chosenStudent = data[0];
+          }
 
           clearTables();
           setChartData(data[0].id);

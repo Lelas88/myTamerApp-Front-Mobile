@@ -4,11 +4,7 @@
 
 angular.module('dashboard.services', ['ngResource', 'ngRoute', 'constants'])
 
-  .service('Dashboard', function($http, Auth, MYTAMER) {
-
-    this.getUserId = function() {
-      return $http.get(MYTAMER.url + '/user/getId?username=' + Auth.getUser());
-    };
+  .service('Dashboard', function($http, MYTAMER) {
 
     this.getGroups = function (userId) {
       return $http.get(MYTAMER.url + '/group?userId=' + userId);

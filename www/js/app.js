@@ -68,7 +68,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
         views: {
           'menuContent': {
             templateUrl: "templates/views/student.html",
-            controller: 'StudentsCtrl'
+            controller: 'StudentCtrl'
           }
         }
       })

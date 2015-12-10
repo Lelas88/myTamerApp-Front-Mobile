@@ -12,11 +12,11 @@
 
         <p class="attribute-name">Age:</p>
 
-        <p class="attribute-name">Weight:</p>
+        <p class="attribute-name" ng-if="student.weight">Weight:</p>
 
-        <p class="attribute-name">Height:</p>
+        <p class="attribute-name" ng-if="student.height">Height:</p>
 
-        <p class="attribute-name">BMI:</p>
+        <p class="attribute-name" ng-if="student.bmi">BMI:</p>
       </div>
       <div class="column">
 
@@ -28,11 +28,11 @@
 
         <p class="attribute-value">{{student.age}}</p>
 
-        <p class="attribute-value">{{student.weight}}</p>
+        <p class="attribute-value" ng-if="student.weight" > 0">{{student.weight}}</p>
 
-        <p class="attribute-value">{{student.height}}</p>
+        <p class="attribute-value" ng-if="student.height" > 0">{{student.height}}</p>
 
-        <p class="attribute-value">
+        <p class="attribute-value" ng-if="student.bmi" > 0">
           <span
             ng-class="{blue: student.bmi_status == 1, green: student.bmi_status == 2, orange: student.bmi_status == 3, red: student.bmi_status == 4}">
             {{student.bmi}}
