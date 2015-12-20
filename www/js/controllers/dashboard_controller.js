@@ -14,7 +14,7 @@ angular.module('dashboard.controller', ['starter.services', 'dashboard.services'
     initiateChartData();
 
     $scope.$on('$ionicView.beforeEnter', function () {
-      if(selectedGroup != null) {
+      if (selectedGroup != null) {
         renderStudents(selectedGroup);
       } else {
         getUserId();
@@ -28,7 +28,7 @@ angular.module('dashboard.controller', ['starter.services', 'dashboard.services'
       setChartData($scope.students[index].id);
     };
 
-    $scope.getStudents = function(groupId) {
+    $scope.getStudents = function (groupId) {
       selectedGroup = groupId;
       renderStudents(groupId);
     };
@@ -65,19 +65,28 @@ angular.module('dashboard.controller', ['starter.services', 'dashboard.services'
       Dashboard.getStudents(groupId)
         .success(function (data) {
           $scope.students = data;
-          if ($scope.chosenStudent == null) {
-            $scope.chosenStudent = data[0];
-          }
+          $scope.chosenStudent = data[0];
 
           clearTables();
           setChartData(data[0].id);
+          setBMIStatus(data[0].bmi);
 
           $ionicSlideBoxDelegate.update();
           $ionicSlideBoxDelegate.loop(false);
         })
         .error(function (error) {
-          $scope.status = 'Unable to load students: ' + e.message;
+          $scope.status = 'Unable to load students: ' + error.message;
         });
+    }
+
+    function setBMIStatus(bmiValue) {
+      if(bmiValue < 18.5) {
+        $scope.bmi_status = 1;
+      } else if(bmiValue > 18.5 && bmiValue < 25) {
+        $scope.bmi_status = 2;
+      } else {
+        $scope.bmi_status = 3;
+      }
     }
 
     function setChartData(studentId) {
@@ -95,7 +104,7 @@ angular.module('dashboard.controller', ['starter.services', 'dashboard.services'
           $scope.weight_data.push(weight_data_array);
         })
         .error(function (error) {
-          $scope.status = 'Unable to load chart data: ' + e.message;
+          $scope.status = 'Unable to load chart data: ' + error.message;
         });
     }
 

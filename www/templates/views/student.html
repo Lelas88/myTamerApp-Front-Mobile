@@ -5,16 +5,48 @@
         Basic Data
       </div>
       <div class="item item-text-wrap">
+        <ng-include src="'/templates/views/student_basic_data.html'"></ng-include>
       </div>
     </div>
-    <div class="card">
+    <div class="card" ng-if="studentTraningPlans.length > 0">
       <div class="item item-divider">
         Training plans
       </div>
       <div class="item item-text-wrap">
+        <ion-list>
+          <ion-item ng-repeat="trainingPlan in studentTraningPlans" class="student-list-item" href="#/app/trainingPlans/{{trainingPlan.id}}">
+            {{trainingPlan.name}}
+          </ion-item>
+        </ion-list>
       </div>
     </div>
-    <div class="card">
+    <div class="card" ng-if="studentContraindications.length > 0">
+      <div class="item item-divider">
+        Important information / Contrainications
+      </div>
+      <div class="item item-text-wrap">
+        <ion-list>
+          <ion-item ng-repeat="contraindication in studentContraindications">
+            <div ng-bind-html="contraindication">
+            </div>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+    </div>
+    <div class="card" ng-if="studentDiets.length > 0">
+      <div class="item item-divider">
+        Diets
+      </div>
+      <div class="item item-text-wrap">
+        <ion-list>
+          <ion-item ng-repeat="diet in studentDiets" class="student-list-item" href="#/app/diets/{{diet.id}}">
+            {{diet.name}}
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+    <div class="card" ng-if="studentGoals.length > 0">
       <div class="item item-divider">
         Goals
       </div>

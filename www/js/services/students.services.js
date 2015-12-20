@@ -12,6 +12,19 @@ angular.module('students.services', ['ngResource', 'ngRoute', 'constants'])
 
   })
   .factory('Student', function ($resource, MYTAMER) {
-      return $resource(MYTAMER.url + '/student/:studentId');
+    return {
+      studentData: function () {
+        return $resource(MYTAMER.url + '/student/:studentId');
+      },
+      studentTraningPlans: function () {
+        return $resource(MYTAMER.url + '/trainingPlan/byStudent/:studentId');
+      },
+      studentContraindications: function () {
+        return $resource(MYTAMER.url + '/student/contraindications/:studentId');
+      },
+      studentDiets: function () {
+        return $resource(MYTAMER.url + '/student/diet/:studentId');
+      }
+    }
   });
 

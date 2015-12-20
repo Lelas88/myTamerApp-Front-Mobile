@@ -33,5 +33,8 @@ angular.module('students.controller', ['students.services'])
     }
   })
   .controller('StudentCtrl', function ($scope, $http, $stateParams, Student) {
-    $scope.student = Student.get({studentId: $stateParams.studentId});
+    $scope.student = Student.studentData().get({studentId: $stateParams.studentId});
+    $scope.studentTraningPlans = Student.studentTraningPlans().query({studentId: $stateParams.studentId});
+    $scope.studentContraindications = Student.studentContraindications().query({studentId: $stateParams.studentId});
+    $scope.studentDiets = Student.studentDiets().query({studentId: $stateParams.studentId});
   });
