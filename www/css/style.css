@@ -3,40 +3,49 @@
 .dashboard-student-data {
   width: 100%;
 }
+
 .dashboard-student-data .column {
   float: left;
   width: 50%;
   padding-bottom: 60px;
 }
+
 #myGroups {
   width: 100%;
   font-size: 15px;
 }
+
 .red {
   color: red;
   font-weight: bold;
 }
+
 .orange {
   color: orange;
   font-weight: bold;
 }
+
 .green {
   color: green;
   font-weight: bold;
 }
+
 .blue {
   color: blue;
   font-weight: bold;
 }
+
 .truncate {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .student-photo {
   width: 100%;
   height: auto;
 }
+
 .list-image-container {
   float: right;
   width: 60px;
@@ -45,13 +54,16 @@
   background-size: cover;
   background-position: center;
 }
+
 .list-details p {
   font-size: 12px;
 }
+
 .list-main p {
   font-size: 16px;
   font-weight: bold;
 }
+
 .progress-container {
   width: 100%;
   height: 20px;
@@ -60,13 +72,38 @@
   background-color: dimgrey;
   text-align: center;
 }
+
 .progress {
   width: 85%;
   height: 20px;
   background-color: greenyellow;
   text-align: center;
 }
+
 .progress-container p {
   width: 100%;
+  font-weight: bold;
+}
+
+.add-button {
+  float: left;
+}
+
+.remove-button {
+  float: right;
+}
+
+.button-save {
+  width: 100%;
+  height: 100%;
+  border: 0px;
+}
+.timesheet {
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+.timesheet-student-data {
+  margin: 10px auto;
   font-weight: bold;
 }

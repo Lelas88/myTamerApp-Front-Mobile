@@ -1,0 +1,19 @@
+<ion-view view-title="Timesheet" ng-controller="GroupCtrl">
+  <ion-content>
+    <ion-list ng-repeat="student in students"
+              option-buttons="itemButtons">
+      <ion-item menu-close>
+        <div class="row">
+          <label class="checkbox">
+            <input type="checkbox" ng-click="addToPresenceList(student); $event.stopPropagation();" ng-model="student.checked">
+          </label>
+          <p class="timesheet-student-data">{{student.firstName}} {{student.lastName}}</p>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+  <ion-footer-bar class="bar bar-footer bar-balanced">
+    <button class="button button-save" ng-click="saveTimesheet()">Save</button>
+  </ion-footer-bar>
+</ion-view>

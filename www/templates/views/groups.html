@@ -1,0 +1,30 @@
+<ion-view view-title="Groups">
+
+  <ion-header-bar align-title="right" class="bar-dark bar-subheader">
+    <div class="buttons">
+      <button class="button button-icon ion-plus-circled add-button"
+              ng-click="addGroup()"> Add
+      </button>
+      <button class="button button-icon icon ion-trash-b remove-button"
+              ng-click="shouldShowDelete = !shouldShowDelete;"> Delete
+      </button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+    <ion-list ng-repeat="group in groups"
+              show-delete="shouldShowDelete">
+      <ion-item menu-close href="#/app/groups/{{group.id}}" class="item-remove-animate">
+        <div class="row">
+          <div class="col">
+            {{group.name}}
+          </div>
+        </div>
+        <ion-delete-button class="ion-minus-circled"
+                           ng-click="onItemDelete(group)">
+        </ion-delete-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+</ion-view>

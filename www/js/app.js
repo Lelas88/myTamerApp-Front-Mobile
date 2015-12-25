@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller', 'activity.controller', 'beacons.controller', 'students.controller'])
+angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller', 'activity.controller', 'beacons.controller', 'students.controller', 'groups.controller'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -49,6 +49,36 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
           'menuContent': {
             templateUrl: "templates/views/dashboard.html",
             controller: 'DashboardCtrl'
+          }
+        }
+      })
+
+      .state('app.groups', {
+        url: "/groups",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/groups.html",
+            controller: 'GroupsCtrl'
+          }
+        }
+      })
+
+      .state('app.group', {
+        url: "/groups/:groupId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/group.html",
+            controller: 'GroupCtrl'
+          }
+        }
+      })
+
+      .state('app.timesheet', {
+        url: "/timesheet/:groupId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/timesheet.html",
+            controller: 'GroupCtrl'
           }
         }
       })
