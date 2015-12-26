@@ -4,7 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller', 'activity.controller', 'beacons.controller', 'students.controller', 'groups.controller'])
+angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller', 'activity.controller',
+  'beacons.controller', 'students.controller', 'groups.controller', 'timesheet.controller', 'exercises.controller',
+  'exercisesets.controller', 'trainingplans.controller', 'meals.controller'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -78,7 +80,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
         views: {
           'menuContent': {
             templateUrl: "templates/views/timesheet.html",
-            controller: 'GroupCtrl'
+            controller: 'TimesheetCtrl'
           }
         }
       })
@@ -99,6 +101,86 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
           'menuContent': {
             templateUrl: "templates/views/student.html",
             controller: 'StudentCtrl'
+          }
+        }
+      })
+
+      .state('app.exercises', {
+        url: "/exercises",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/exercises.html",
+            controller: 'ExercisesCtrl'
+          }
+        }
+      })
+
+      .state('app.exercise', {
+        url: "/exercises/:exerciseId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/exercise.html",
+            controller: 'ExerciseCtrl'
+          }
+        }
+      })
+
+      .state('app.exercisesets', {
+        url: "/exercisesets",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/exercisesets.html",
+            controller: 'ExerciseSetsCtrl'
+          }
+        }
+      })
+
+      .state('app.exerciseset', {
+        url: "/exercisesets/:exerciseSetId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/exerciseset.html",
+            controller: 'ExerciseSetCtrl'
+          }
+        }
+      })
+
+      .state('app.trainingplans', {
+        url: "/trainingplans",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/trainingplans.html",
+            controller: 'TrainingPlansCtrl'
+          }
+        }
+      })
+
+      .state('app.trainingplan', {
+        url: "/trainingplans/:trainingPlanId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/trainingplan.html",
+            controller: 'TrainingPlanCtrl'
+          }
+        }
+      })
+
+      .state('app.meals', {
+        url: "/meals",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/meals.html",
+            controller: 'MealsCtrl'
+          }
+        }
+      })
+
+      .state('app.meal', {
+        url: "/meals/:mealId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/meal.html",
+            controller: 'MealCtrl'
           }
         }
       })

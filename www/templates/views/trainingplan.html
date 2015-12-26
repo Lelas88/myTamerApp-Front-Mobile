@@ -1,0 +1,74 @@
+<ion-view view-title="{{trainingPlan.name}}">
+  <ion-header-bar align-title="right" class="bar-dark bar-subheader">
+    <div class="buttons">
+      <button class="button button-icon ion-edit center-button"
+              ng-click="editTrainingPlan()"> Edit
+      </button>
+      <button class="button button-icon ion-plus-round center-button"
+              ng-click="assignExerciseSet()"> Exercise Set
+      </button>
+      <button class="button button-icon ion-plus-round center-button"
+              ng-click="assignStudent()"> Student
+      </button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <div class="card">
+      <div class="item item-divider">
+        Details
+      </div>
+      <div class="item item-text-wrap">
+
+        <div class="row">
+          <div class="col">
+            <div class="description" ng-bind-html="trainingPlan.description">{{trainingPlan.description}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" ng-if="trainingPlan.exerciseSets.length > 0">
+      <div class="item item-divider">
+        Exercise Sets assigned
+      </div>
+      <div class="item item-text-wrap">
+        <ion-list>
+          <ion-item ng-repeat="exerciseSet in trainingPlan.exerciseSets" href="#/app/exercisesets/{{exerciseSet.id}}">
+            <p>{{exerciseSet.name}}</p>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+
+    <div class="card" ng-if="trainingPlan.students.length > 0">
+      <div class="item item-divider">
+        Students assigned
+      </div>
+      <div class="item item-text-wrap">
+        <ion-list>
+          <ion-item ng-repeat="student in trainingPlan.students" href="#/app/students/{{student.id}}">
+            <p>{{student.firstName}} {{student.lastName}}</p>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+
+    <div class="card" ng-if="trainingPlan.diets.length > 0">
+      <div class="item item-divider">
+        Diets assigned
+      </div>
+      <div class="item item-text-wrap">
+        <ion-list>
+          <ion-item ng-repeat="diet in trainingPlan.diets" href="#/app/diets/{{diet.id}}">
+            <p>{{diet.name}}</p>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+
+  </ion-content>
+
+</ion-view>

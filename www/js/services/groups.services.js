@@ -16,13 +16,16 @@ angular.module('groups.services', ['ngResource', 'ngRoute', 'constants'])
       getGroupStudents: function () {
         return $resource(MYTAMER.url + '/student?groupId=:groupId');
       },
-      saveTimesheet: function () {
-        return $resource(MYTAMER.url + '/timesheet', null, {
-          save: {
-            method: 'POST',
-            isArray: true
-          }
-        }, {headers: {"Content-Type": 'application/json'}});
+      saveTimesheet: function() {
+        return $resource(MYTAMER.url + '/timesheet');
       }
+      //saveTimesheet: function () {
+      //  return $resource(MYTAMER.url + '/timesheet', null, {
+      //    save: {
+      //      method: 'POST',
+      //      isArray: true
+      //    }
+      //  }, {headers: {"Content-Type": 'application/json'}});
+      //}
     }
   });

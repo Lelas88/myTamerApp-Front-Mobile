@@ -1,0 +1,60 @@
+<ion-view view-title="{{exerciseSet.name}}">
+  <ion-header-bar align-title="right" class="bar-dark bar-subheader">
+    <div class="buttons">
+      <button class="button button-icon ion-edit center-button"
+              ng-click="editExerciseSet()"> Edit
+      </button>
+      <button class="button button-icon ion-plus-round center-button"
+              ng-click="assignExercise()"> Assign Exercise
+      </button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <div class="card" ng-if="exerciseSet.exerciseLength != null">
+      <div class="item item-divider">
+        Time
+      </div>
+      <div class="item item-text-wrap">
+
+        <div class="row">
+          <div class="col">
+            <p><b>Prefered length:</b></p>
+          </div>
+          <div class="col">
+            {{convertMinutesToHours(exerciseSet.exerciseLength)}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" ng-if="exerciseSet.exercises.length > 0">
+      <div class="item item-divider">
+        Exercises assigned
+      </div>
+      <div class="item item-text-wrap">
+        <ion-list>
+          <ion-item ng-repeat="exercise in exerciseSet.exercises" href="#/app/exercises/{{exercise.id}}">
+            <p>{{exercise.name}}</p>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+
+    <div class="card" ng-if="exerciseSet.trainingPlans.length > 0">
+      <div class="item item-divider">
+        Training plans using this exercise set
+      </div>
+      <div class="item item-text-wrap">
+        <ion-list>
+          <ion-item ng-repeat="trainingPlan in exerciseSet.trainingPlans" href="#/app/trainingplan/{{trainingPlan.id}}">
+            <p>{{trainingPlan.name}}</p>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+
+  </ion-content>
+
+</ion-view>

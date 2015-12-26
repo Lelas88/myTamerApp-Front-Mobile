@@ -1,0 +1,30 @@
+<ion-view view-title="Exercise Sets">
+
+  <ion-header-bar align-title="right" class="bar-dark bar-subheader">
+    <div class="buttons">
+      <button class="button button-icon ion-plus-circled add-button"
+              ng-click="addExerciseSet()"> Add
+      </button>
+      <button class="button button-icon icon ion-trash-b remove-button"
+              ng-click="shouldShowDelete = !shouldShowDelete;"> Delete
+      </button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+    <ion-list ng-repeat="exerciseSet in exerciseSets"
+              show-delete="shouldShowDelete">
+      <ion-item menu-close href="#/app/exercisesets/{{exerciseSet.id}}">
+        <div class="row">
+          <div class="col list-main">
+            <p>{{exerciseSet.name}}</p>
+          </div>
+        </div>
+        <ion-delete-button class="ion-minus-circled"
+                           ng-click="onItemDelete(exerciseSet)">
+        </ion-delete-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+</ion-view>

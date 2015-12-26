@@ -1,0 +1,61 @@
+<ion-view view-title="{{meal.name}}">
+  <ion-header-bar align-title="right" class="bar-dark bar-subheader">
+    <div class="buttons">
+      <button class="button button-icon ion-edit center-button"
+              ng-click="editMeal()"> Edit
+      </button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <div class="card" ng-if="meal.description.length > 0">
+      <div class="item item-divider">
+        Details
+      </div>
+      <div class="item item-text-wrap">
+        <div class="row" ng-if="exercise.iconName != null">
+          <div class="image-container"
+               style="background-image: url('./img/userImages/meals/{{meal.iconName}}');">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="description" ng-bind-html="meal.description">{{meal.description}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" ng-if="meal.ingridients.length > 0">
+      <div class="item item-divider">
+        Ingridients
+      </div>
+      <div class="item item-text-wrap">
+        <div class="row">
+          <div class="col">
+            <div class="description" ng-bind-html="meal.ingridients">{{meal.ingridients}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" ng-if="meal.preparing.length > 0">
+      <div class="item item-divider">
+        Preparing
+      </div>
+      <div class="item item-text-wrap">
+        <div class="row">
+          <div class="col">
+            <div class="description" ng-bind-html="meal.preparing">{{meal.preparing}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ion-content>
+
+</ion-view>

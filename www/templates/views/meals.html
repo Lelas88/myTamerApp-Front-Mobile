@@ -1,0 +1,36 @@
+<ion-view view-title="Meals">
+
+  <ion-header-bar align-title="right" class="bar-dark bar-subheader">
+    <div class="buttons">
+      <button class="button button-icon ion-plus-circled add-button"
+              ng-click="addMeal()"> Add
+      </button>
+      <button class="button button-icon icon ion-trash-b remove-button"
+              ng-click="shouldShowDelete = !shouldShowDelete;"> Delete
+      </button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+    <ion-list ng-repeat="meal in meals"
+              show-delete="shouldShowDelete">
+      <ion-item menu-close href="#/app/meals/{{meal.id}}">
+        <div class="row">
+          <div class="col list-main">
+            <p>{{meal.name}}</p>
+          </div>
+
+          <div class="col" ng-if="meal.photoName != null && meal.photoName.length > 0">
+            <div class="list-image-container"
+                 style="background-image: url('./img/userImages/meals/{{meal.photoName}}');">
+            </div>
+          </div>
+        </div>
+        <ion-delete-button class="ion-minus-circled"
+                           ng-click="onItemDelete(meal)">
+        </ion-delete-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+</ion-view>

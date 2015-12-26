@@ -39,29 +39,10 @@ angular.module('groups.controller', ['groups.services'])
     };
   })
   .controller('GroupCtrl', function ($scope, $http, $state, $stateParams, Group) {
-    var presence = [];
-
-    $scope.$on('$ionicView.beforeEnter', function () {
-      presence = [];
-    });
-
     $scope.students = Group.getGroupStudents().query({groupId: $stateParams.groupId});
 
     $scope.checkTimesheet = function () {
       $state.transitionTo('app.timesheet', {'groupId': $stateParams.groupId});
-    };
-
-    $scope.addToPresenceList = function (student) {
-      if (student.checked) {
-        presence.push(student.id);
-      } else {
-        var index = presence.indexOf(student.id);
-        presence.splice(index, 1);
-      }
-    };
-
-    $scope.saveTimesheet = function () {
-      Group.saveTimesheet().save({ "studentIds": presence});
     };
 
   });

@@ -1,0 +1,75 @@
+<ion-view view-title="{{exercise.name}}">
+  <ion-header-bar align-title="right" class="bar-dark bar-subheader">
+    <div class="buttons">
+      <button class="button button-icon ion-edit center-button"
+              ng-click="editExercise()"> Edit
+      </button>
+      <button class="button button-icon ion-clock center-button"
+              ng-click="addResult()"> Add Result
+      </button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <div class="card">
+      <div class="item item-divider">
+        Details
+      </div>
+      <div class="item item-text-wrap">
+
+        <div class="row" ng-if="exercise.iconName != null">
+          <div class="image-container"
+               style="background-image: url('./img/userImages/exercises/{{exercise.iconName}}');">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <p><b>Discipline:</b></p>
+          </div>
+          <div class="col">
+            {{exercise.disciplineName}}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <p><b>Measured in:</b></p>
+          </div>
+          <div class="col">
+            {{exercise.unitName}}
+          </div>
+          <div class="col" ng-if="exercise.secondUnitName != null">
+            and {{exercise.secondUnitName}}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <p><b>Description:</b></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="description" ng-bind-html="exercise.description">{{exercise.description}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" ng-if="exercise.studentNames.length > 0">
+      <div class="item item-divider">
+        Students assigned
+      </div>
+      <div class="item item-text-wrap">
+        <ion-list>
+          <ion-item ng-repeat="student in exercise.studentNames" href="#/app/students/{{student.id}}">
+            <p>{{student.firstName}} {{student.lastName}}</p>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+
+  </ion-content>
+
+</ion-view>
