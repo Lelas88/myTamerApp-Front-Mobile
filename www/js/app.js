@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller', 'activity.controller',
-  'beacons.controller', 'students.controller', 'groups.controller', 'timesheet.controller', 'exercises.controller',
-  'exercisesets.controller', 'trainingplans.controller', 'meals.controller'])
+angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller', 'beacons.controller',
+  'students.controller', 'groups.controller', 'timesheet.controller', 'exercises.controller', 'exercisesets.controller',
+  'trainingplans.controller', 'meals.controller', 'mealsets.controller', 'diets.controller'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -185,32 +185,52 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
         }
       })
 
+      .state('app.mealsets', {
+        url: "/mealsets",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/mealsets.html",
+            controller: 'MealSetsCtrl'
+          }
+        }
+      })
+
+      .state('app.mealset', {
+        url: "/mealsets/:mealSetId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/mealset.html",
+            controller: 'MealSetCtrl'
+          }
+        }
+      })
+
+      .state('app.diets', {
+        url: "/diets",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/diets.html",
+            controller: 'DietsCtrl'
+          }
+        }
+      })
+
+      .state('app.diet', {
+        url: "/diets/:dietId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/diet.html",
+            controller: 'DietCtrl'
+          }
+        }
+      })
+
       .state('app.surroundings', {
         url: "/surroundings",
         views: {
           'menuContent': {
             templateUrl: "templates/views/surroundings.html",
             controller: 'BeaconsCtrl'
-          }
-        }
-      })
-
-      .state('app.activities', {
-        url: "/activities",
-        views: {
-          'menuContent': {
-            templateUrl: "templates/views/activities.html",
-            controller: 'ActivitiesCtrl'
-          }
-        }
-      })
-
-      .state('app.activity', {
-        url: "/activities/:activityId",
-        views: {
-          'menuContent': {
-            templateUrl: "templates/views/activity.html",
-            controller: 'ActivityCtrl'
           }
         }
       });

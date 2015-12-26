@@ -1,0 +1,43 @@
+<ion-view view-title="{{mealSet.name}}">
+  <ion-header-bar align-title="right" class="bar-dark bar-subheader">
+    <div class="buttons">
+      <button class="button button-icon ion-edit center-button"
+              ng-click="editMealSet()"> Edit
+      </button>
+      <button class="button button-icon ion-plus-round center-button"
+              ng-click="assignMeal()"> Assign Meal
+      </button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <div class="card" ng-if="mealSet.meals.length > 0">
+      <div class="item item-divider">
+        Meals assigned
+      </div>
+      <div class="item item-text-wrap">
+        <ion-list>
+          <ion-item ng-repeat="meal in mealSet.meals" href="#/app/meals/{{meal.id}}">
+            <p>{{meal.name}}</p>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+
+    <div class="card" ng-if="mealSet.diets.length > 0">
+      <div class="item item-divider">
+        Diets using this meal set
+      </div>
+      <div class="item item-text-wrap">
+        <ion-list>
+          <ion-item ng-repeat="diet in mealSet.diets" href="#/app/diets/{{diet.id}}">
+            <p>{{diet.name}}</p>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+
+  </ion-content>
+
+</ion-view>

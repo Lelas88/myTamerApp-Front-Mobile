@@ -1,0 +1,54 @@
+<ion-view view-title="{{diet.name}}">
+  <ion-header-bar align-title="right" class="bar-dark bar-subheader">
+    <div class="buttons">
+      <button class="button button-icon ion-edit center-button"
+              ng-click="editDiet()"> Edit
+      </button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <div class="card" ng-if="diet.description.length > 0">
+      <div class="item item-divider">
+        Details
+      </div>
+      <div class="item item-text-wrap">
+        <div class="row">
+          <div class="col">
+            <div class="description" ng-bind-html="diet.description">{{diet.description}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" ng-if="diet.mealSets.length > 0">
+      <div class="item item-divider">
+        Meal Sets assigned
+      </div>
+      <div class="item item-text-wrap">
+        <ion-list>
+          <ion-item ng-repeat="mealSet in diet.mealSets" href="#/app/mealsets/{{mealSet.id}}">
+            <p>{{mealSet.name}}</p>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+
+    <div class="card" ng-if="diet.trainingPlans.length > 0">
+      <div class="item item-divider">
+        Training Plans with this diet assigned
+      </div>
+      <div class="item item-text-wrap">
+        <ion-list>
+          <ion-item ng-repeat="trainingPlan in diet.trainingPlans" href="#/app/trainingplans/{{trainingPlan.id}}">
+            <p>{{trainingPlan.name}}</p>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+
+  </ion-content>
+
+</ion-view>

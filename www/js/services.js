@@ -31,15 +31,6 @@ angular.module('starter.services', ['ngResource', 'ngCookies', 'constants'])
   });
 
 /* ------------------------------------------------------------- */
-/* ----------------------- Activities -------------------------- */
-/* ------------------------------------------------------------- */
-angular.module('activity.services', ['ngResource'])
-
-  .factory('Activity', function ($resource) {
-    return $resource('http://localhost:5000/activities/:activityId');
-  });
-
-/* ------------------------------------------------------------- */
 /* -------------------------- Beacons -------------------------- */
 /* ------------------------------------------------------------- */
 angular.module('beacons.services', ['ngCordovaBeacon']);
