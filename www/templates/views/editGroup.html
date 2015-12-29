@@ -1,0 +1,54 @@
+<ion-view view-title="Edit group">
+  <form name="groupForm">
+    <ion-content>
+
+      <div class="card">
+        <div class="item item-divider">
+          Group data
+        </div>
+        <div class="item item-text-wrap">
+          <div class="row">
+            <p><b>Group name:</b></p>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label class="item item-input">
+                <input type="text" name="groupName" ng-required="true" ng-minlength="1" ng-model="group.name"
+                       placeholder="Click here to enter group name..." size="30" ng-value="group.name" required>
+              </label>
+
+              <div class="item error">
+                <p ng-show="groupForm.groupName.$error.required">Group name is required!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item item-divider">
+          Assign students
+        </div>
+        <div class="item item-text-wrap">
+          <ion-list ng-repeat="student in students"
+                    option-buttons="itemButtons">
+            <ion-item menu-close>
+              <div class="row">
+                <label class="checkbox">
+                  <input type="checkbox" ng-click="addToAssignmentList(student); $event.stopPropagation();"
+                         ng-model="student.checked">
+                </label>
+
+                <p class="timesheet-student-data">{{student.firstName}} {{student.lastName}}</p>
+              </div>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+    </ion-content>
+
+    <ion-footer-bar class="bar bar-footer bar-balanced" ng-hide="groupForm.$invalid">
+      <button class="button button-save" ng-click="saveGroup()">save</button>
+    </ion-footer-bar>
+  </form>
+</ion-view>

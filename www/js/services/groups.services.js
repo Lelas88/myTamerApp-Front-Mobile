@@ -4,28 +4,39 @@
 
 angular.module('groups.services', ['ngResource', 'ngRoute', 'constants'])
 
-  .service('Groups', function ($http, $resource, User, MYTAMER) {
-
-    this.getUserGroups = function (userId) {
-      return $http.get(MYTAMER.url + '/group?userId=' + userId);
-    };
-
+  .factory('Groups', function ($resource, MYTAMER) {
+    return {
+      getUserGroups: function () {
+        return $resource(MYTAMER.url + '/group?userId=:userId');
+      },
+      saveGroup: function () {
+        return $resource(MYTAMER.url + '/group/createGroup');
+      },
+      linkStudents: function() {
+        return $resource(MYTAMER.url + '/group/linkStudents?groupId=:groupId', {}, {
+          'update': {method: 'PUT'}
+        });
+      }
+    }
   })
   .factory('Group', function ($resource, MYTAMER) {
     return {
+      updateGroup: function() {
+        return $resource(MYTAMER.url + '/group/updateGroup', {}, {
+          'update': {method: 'PUT'}
+        });
+      },
       getGroupStudents: function () {
         return $resource(MYTAMER.url + '/student?groupId=:groupId');
       },
-      saveTimesheet: function() {
+      saveTimesheet: function () {
         return $resource(MYTAMER.url + '/timesheet');
+      },
+      getGroupDetails: function () {
+        return $resource(MYTAMER.url + '/group/getOne?groupId=:groupId');
+      },
+      deleteGroup: function () {
+        return $resource(MYTAMER.url + '/group/delete?groupId=:groupId');
       }
-      //saveTimesheet: function () {
-      //  return $resource(MYTAMER.url + '/timesheet', null, {
-      //    save: {
-      //      method: 'POST',
-      //      isArray: true
-      //    }
-      //  }, {headers: {"Content-Type": 'application/json'}});
-      //}
     }
   });

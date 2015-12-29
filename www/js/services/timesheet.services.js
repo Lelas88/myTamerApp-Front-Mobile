@@ -8,14 +8,9 @@ angular.module('timesheet.services', ['ngResource', 'ngRoute', 'constants'])
     return {
       saveTimesheet: function() {
         return $resource(MYTAMER.url + '/timesheet');
+      },
+      checkPresence: function() {
+        return $resource(MYTAMER.url + '/timesheet/check');
       }
-      //saveTimesheet: function () {
-      //  return $resource(MYTAMER.url + '/timesheet', null, {
-      //    save: {
-      //      method: 'POST',
-      //      isArray: true
-      //    }
-      //  }, {headers: {"Content-Type": 'application/json'}});
-      //}
     }
   });

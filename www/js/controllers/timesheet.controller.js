@@ -2,8 +2,8 @@
  * Created by rober on 26.12.2015.
  */
 
-angular.module('timesheet.controller', ['timesheet.services'])
-  .controller('TimesheetCtrl', function ($scope, $http, $stateParams, Group, Timesheet) {
+angular.module('timesheet.controller', ['timesheet.services', 'ngCordova'])
+  .controller('TimesheetCtrl', function ($scope, $http, $stateParams, $ionicPopup, $state, Group, Timesheet) {
 
     var presence = [];
 
@@ -23,17 +23,33 @@ angular.module('timesheet.controller', ['timesheet.services'])
     };
 
     $scope.saveTimesheet = function () {
-      //Group.saveTimesheet().save({ "studentIds": presence});
-      //$scope.timesheet = presence;
-      //Timesheet.saveTimesheet().save($scope.timesheet, function() {
-      //  console.log("timesheet saved");
-      //});
-      $http.post('http://localhost:8100/mytamer/timesheet', {studentIds: presence})
-        .success(function(response) {
-          console.log(response);
-        })
-        .error(function(e) {
-          console.log(e);
+      $scope.timesheet = presence;
+      if (presence.length > 0) {
+        Timesheet.saveTimesheet().save($scope.timesheet, function () {
+          showConfirmation();
         });
+      } else {
+        showError();
+      }
     };
+
+    function showConfirmation() {
+      var confirmationPopup = $ionicPopup.alert({
+        title: 'Confirmation',
+        template: 'Timesheet saved!'
+      });
+      confirmationPopup.then(function (res) {
+        presence = [];
+        $state.transitionTo('app.group', {'groupId': $stateParams.groupId});
+      });
+    }
+
+    function showError() {
+      var errorPopup = $ionicPopup.alert({
+        title: 'Error',
+        template: 'Select at least one student.'
+      });
+      errorPopup.then(function (res) {
+      });
+    }
   });

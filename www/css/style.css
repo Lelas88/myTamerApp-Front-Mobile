@@ -125,3 +125,7 @@
 .buttons {
   text-align: center;
 }
+
+div.error p {
+  color: red;
+}

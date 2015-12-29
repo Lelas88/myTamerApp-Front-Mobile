@@ -13,6 +13,9 @@ angular.module('students.services', ['ngResource', 'ngRoute', 'constants'])
   })
   .factory('Student', function ($resource, MYTAMER) {
     return {
+      getUserStudentsWithNoGroupAssigned: function () {
+        return $resource(MYTAMER.url + '/student/withNoGroup?userId=:userId');
+      },
       studentData: function () {
         return $resource(MYTAMER.url + '/student/:studentId');
       },

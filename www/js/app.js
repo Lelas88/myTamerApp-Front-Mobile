@@ -75,11 +75,41 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
         }
       })
 
+      .state('app.creategroup', {
+        url: "/createGroup",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/createGroup.html",
+            controller: 'CreateGroupCtrl'
+          }
+        }
+      })
+
+      .state('app.editgroup', {
+        url: "/editGroup/:groupId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/editGroup.html",
+            controller: 'EditGroupCtrl'
+          }
+        }
+      })
+
       .state('app.timesheet', {
         url: "/timesheet/:groupId",
         views: {
           'menuContent': {
             templateUrl: "templates/views/timesheet.html",
+            controller: 'TimesheetCtrl'
+          }
+        }
+      })
+
+      .state('app.presence', {
+        url: "/presence/:groupId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/presence.html",
             controller: 'TimesheetCtrl'
           }
         }

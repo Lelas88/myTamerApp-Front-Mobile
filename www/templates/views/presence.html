@@ -1,0 +1,27 @@
+<ion-view view-title="Check presence">
+  <ion-header-bar class="bar bar-header bar-balanced">
+    <button class="button button-save" ng-click="calculate()">Refresh</button>
+  </ion-header-bar>
+
+  <ion-content>
+    <div class="row">
+      <div class="col">
+        <label>From:</label>
+        <input type="date" name="fromDate" max="{{today}}" min="01-01-1900" defaultValue="{{today}}">
+      </div>
+      <div class="col">
+        <label>To:</label>
+        <input type="date" name="toDate" max="{{today}}" min="01-01-1900" defaultValue="{{today}}">
+      </div>
+    </div>
+
+    <ion-list ng-repeat="student in students"
+              option-buttons="itemButtons">
+      <ion-item menu-close>
+        <div class="row">
+          <p class="timesheet-student-data">{{student.firstName}} {{student.lastName}}</p>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

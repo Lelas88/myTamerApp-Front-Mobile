@@ -3,7 +3,7 @@
   <ion-header-bar align-title="right" class="bar-dark bar-subheader">
     <div class="buttons">
       <button class="button button-icon ion-plus-circled add-button"
-              ng-click="addStudent()"> Add
+              ng-click="editGroup()"> Edit
       </button>
       <button class="button button-icon icon ion-ios-list-outline timesheet-button"
               ng-click="checkTimesheet()"> Timesheet
@@ -19,4 +19,8 @@
       <ng-include src="'/templates/views/students_list.html'"></ng-include>
     </div>
   </ion-content>
+
+  <ion-footer-bar class="bar bar-footer bar-royal">
+    <button class="button button-save" ng-click="countPresences()">Presence count</button>
+  </ion-footer-bar>
 </ion-view>
