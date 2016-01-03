@@ -6,7 +6,7 @@ angular.module('groups.controller', ['groups.services'])
   .controller('GroupsCtrl', function ($scope, $http, $state, $stateParams, $ionicPopup, User, Student, Groups, Group) {
 
     $scope.$on('$ionicView.beforeEnter', function () {
-      shouldShowDelete: false
+      $scope.shouldShowDelete = false;
       getUserId();
     });
 
@@ -56,11 +56,10 @@ angular.module('groups.controller', ['groups.services'])
 /************************************************ SINGLE GROUP ******************************************************/
   /********************************************************************************************************************/
   /********************************************************************************************************************/
-  .controller('GroupCtrl', function ($scope, $http, $state, $stateParams, Group) {
+  .controller('GroupCtrl', function ($scope, $http, $state, $stateParams, $ionicPopup, Group) {
 
     $scope.$on('$ionicView.beforeEnter', function () {
-      $scope.group = Group.getGroupDetails().get({groupId: $stateParams.groupId});
-      $scope.students = Group.getGroupStudents().query({groupId: $stateParams.groupId});
+      loadInitialState();
     });
 
     $scope.editGroup = function () {
@@ -73,6 +72,31 @@ angular.module('groups.controller', ['groups.services'])
 
     $scope.countPresences = function () {
       $state.transitionTo('app.presence', {'groupId': $stateParams.groupId});
+    };
+
+    $scope.unassignStudent = function (student) {
+      confirmUnassignment(student);
+    };
+
+    function loadInitialState() {
+      $scope.shouldShowUnassign = false;
+      $scope.group = Group.getGroupDetails().get({groupId: $stateParams.groupId});
+      $scope.students = Group.getGroupStudents().query({groupId: $stateParams.groupId});
+    }
+
+    function confirmUnassignment(student) {
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Unassign?',
+        template: 'Are you sure you want to unassign student ' + student.firstName + ' ' + student.lastName + ' from this group?'
+      });
+
+      confirmPopup.then(function (res) {
+        if (res) {
+          Group.unassignStudent().update({groupId: $stateParams.groupId, studentId: student.id});
+          $scope.shouldShowUnassign = false;
+          loadInitialState();
+        }
+      });
     }
   })
 
@@ -142,7 +166,6 @@ angular.module('groups.controller', ['groups.services'])
   /********************************************************************************************************************/
   .controller('EditGroupCtrl', function ($scope, $http, $state, $stateParams, $ionicPopup, User, Student, Group, Groups) {
     var user_id;
-    var oldName;
     $scope.groupToSave = {
       "id": 0,
       "trainerId": 0,

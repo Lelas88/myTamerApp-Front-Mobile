@@ -1,4 +1,12 @@
 <ion-view view-title="{{student.firstName}} {{student.lastName}}">
+  <ion-header-bar align-title="right" class="bar-dark bar-subheader">
+    <div class="buttons">
+      <button class="button button-icon ion-edit add-button"
+              ng-click="editStudent()"> Edit
+      </button>
+    </div>
+  </ion-header-bar>
+
   <ion-content>
     <div class="card">
       <div class="item item-divider">

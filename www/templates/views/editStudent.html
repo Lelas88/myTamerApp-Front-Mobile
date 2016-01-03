@@ -1,0 +1,69 @@
+<ion-view view-title="Edit student data">
+  <form name="studentForm">
+    <ion-content>
+
+      <div class="card">
+        <div class="item item-divider">
+          Student data
+        </div>
+        <div class="item item-text-wrap">
+          <div class="row">
+            <div class="col">
+              <label class="item item-input">
+                <input type="text" name="studentFirstName" ng-required="true" ng-minlength="1"
+                       ng-model="student.firstName" ng-value="student.firstName"
+                       placeholder="Enter student's firstname..." size="30" required>
+              </label>
+            </div>
+          </div>
+
+          <div class="item error">
+            <p ng-show="studentForm.studentFirstName.$error.required">Student First Name is required!</p>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label class="item item-input">
+                <input type="text" name="studentLastName" ng-required="true" ng-minlength="1"
+                       ng-model="student.lastName" ng-value="student.lastName"
+                       placeholder="Enter student's lastname..." size="30" required>
+              </label>
+            </div>
+          </div>
+
+          <div class="item error">
+            <p ng-show="studentForm.studentLastName.$error.required">Student Last Name is required!</p>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p>Birthdate: </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label class="item item-input">
+                <input type="date" ng-model="student.birthdate" value={{student.birthdate}} placeholder="yyyy-MM-dd">
+              </label>
+            </div>
+          </div>
+
+          <div class="item error">
+            <p ng-show="studentForm.birthdate.$error.required">Student birthdate is required!</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item item-divider">
+          Student picture
+        </div>
+        <div class="item item-text-wrap">
+          <button class="button button-save" ng-click="addPicture()">Add student Picture</button>
+        </div>
+      </div>
+    </ion-content>
+
+    <ion-footer-bar class="bar bar-footer bar-balanced" ng-hide="studentForm.$invalid;">
+      <button class="button button-save" ng-click="saveStudent()">save</button>
+    </ion-footer-bar>
+  </form>
+</ion-view>

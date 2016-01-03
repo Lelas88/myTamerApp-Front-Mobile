@@ -135,6 +135,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
         }
       })
 
+      .state('app.createstudent', {
+        url: "/createStudent",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/createStudent.html",
+            controller: 'CreateStudentCtrl'
+          }
+        }
+      })
+
+      .state('app.editstudent', {
+        url: "/editStudent/:studentId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/editStudent.html",
+            controller: 'EditStudentCtrl'
+          }
+        }
+      })
+
       .state('app.exercises', {
         url: "/exercises",
         views: {

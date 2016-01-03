@@ -1,0 +1,129 @@
+<ion-view view-title="Create student">
+  <form name="studentForm">
+    <ion-content>
+
+      <div class="card">
+        <div class="item item-divider">
+          Student data
+        </div>
+        <div class="item item-text-wrap">
+          <div class="row">
+            <div class="col">
+              <p>First and last name: </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label class="item item-input">
+                <input type="text" name="studentFirstName" ng-required="true" ng-minlength="1"
+                       ng-model="studentToSave.firstName"
+                       placeholder="Enter student's firstname..." size="30" required>
+              </label>
+            </div>
+          </div>
+
+          <div class="item error">
+            <p ng-show="studentForm.studentFirstName.$error.required">Student First Name is required!</p>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label class="item item-input">
+                <input type="text" name="studentLastName" ng-required="true" ng-minlength="1"
+                       ng-model="studentToSave.lastName"
+                       placeholder="Enter student's lastname..." size="30" required>
+              </label>
+            </div>
+          </div>
+
+          <div class="item error">
+            <p ng-show="studentForm.studentLastName.$error.required">Student Last Name is required!</p>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p>Birthdate: </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label class="item item-input">
+                <input type="date" ng-model="birthdate" value={{birthdate}} placeholder="yyyy-MM-dd">
+              </label>
+            </div>
+          </div>
+
+          <div class="item error">
+            <p ng-show="studentForm.birthdate.$error.required">Student birthdate is required!</p>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <p>Measurements: </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label class="item item-input">
+                <input type="number" name="studentWeight" ng-model="studentToSave.weight" placeholder="Enter weight...">
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label class="item item-input">
+                <input type="number" name="studentHeight" ng-model="studentToSave.height" placeholder="Enter height...">
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item item-divider">
+          Student picture
+        </div>
+        <div class="item item-text-wrap">
+          <button class="button button-save" ng-click="addPicture()">Add student Picture</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item item-divider">
+          Student login data
+        </div>
+        <div class="item item-text-wrap">
+          <div class="row">
+            <div class="col">
+              <label class="item item-input">
+                <input type="email" name="studentEmail" ng-required="true" ng-minlength="1"
+                       ng-model="studentCredentials.email"
+                       placeholder="Enter student's email..." size="30" required>
+              </label>
+            </div>
+          </div>
+
+          <div class="item error">
+            <p ng-show="studentForm.studentEmail.$error.required">Student email is required!</p>
+            <p ng-show="studentForm.studentEmail.$error.email">Wrong email format!</p>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label class="item item-input">
+                <input type="text" name="studentLogin" ng-required="true" ng-minlength="1"
+                       ng-model="studentCredentials.login"
+                       placeholder="Enter student's login..." size="30" required>
+              </label>
+            </div>
+          </div>
+
+          <div class="item error">
+            <p ng-show="studentForm.studentLogin.$error.required">Student login is required!</p>
+          </div>
+        </div>
+      </div>
+    </ion-content>
+
+    <ion-footer-bar class="bar bar-footer bar-balanced" ng-hide="studentForm.$invalid;">
+      <button class="button button-save" ng-click="saveStudent()">save</button>
+    </ion-footer-bar>
+  </form>
+</ion-view>

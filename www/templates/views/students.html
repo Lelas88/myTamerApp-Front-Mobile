@@ -1,4 +1,16 @@
 <ion-view view-title="Students">
+
+  <ion-header-bar align-title="right" class="bar-dark bar-subheader">
+    <div class="buttons">
+      <button class="button button-icon ion-plus-circled add-button"
+              ng-click="addStudent()"> Add
+      </button>
+      <button class="button button-icon icon ion-trash-b remove-button"
+              ng-click="shouldShowDelete = !shouldShowDelete;" ng-show="students.length > 0"> Delete
+      </button>
+    </div>
+  </ion-header-bar>
+
   <ion-content>
     <ng-include src="'/templates/views/students_list.html'"></ng-include>
   </ion-content>

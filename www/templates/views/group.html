@@ -2,21 +2,34 @@
 <ion-view view-title="{{group.name}}">
   <ion-header-bar align-title="right" class="bar-dark bar-subheader">
     <div class="buttons">
-      <button class="button button-icon ion-plus-circled add-button"
+      <button class="button button-icon ion-edit add-button"
               ng-click="editGroup()"> Edit
       </button>
       <button class="button button-icon icon ion-ios-list-outline timesheet-button"
               ng-click="checkTimesheet()"> Timesheet
       </button>
-      <button class="button button-icon icon ion-trash-b remove-button"
-              ng-click="shouldShowDelete = !shouldShowDelete;"> Delete
+      <button class="button button-icon icon ion-minus-circled remove-button"
+              ng-click="shouldShowUnassign = !shouldShowUnassign;"> Unassign
       </button>
     </div>
   </ion-header-bar>
 
   <ion-content>
     <div>
-      <ng-include src="'/templates/views/students_list.html'"></ng-include>
+      <ion-list ng-repeat="student in students"
+                option-buttons="itemButtons">
+        <ion-item menu-close>
+          <div class="row">
+            <label class="checkbox"
+                   ng-show="shouldShowUnassign">
+              <input type="checkbox" ng-click="unassignStudent(student); $event.stopPropagation();"
+                     ng-model="student.checked" ng-checked="student.checked">
+            </label>
+
+            <p class="timesheet-student-data">{{student.firstName}} {{student.lastName}}</p>
+          </div>
+        </ion-item>
+      </ion-list>
     </div>
   </ion-content>
 

@@ -1,4 +1,5 @@
-<ion-list ng-repeat="student in students">
+<ion-list ng-repeat="student in students"
+          show-delete="shouldShowDelete">
 
   <ion-item menu-close href="#/app/students/{{student.id}}">
     <div class="row">
@@ -22,6 +23,9 @@
       </div>
 
     </div>
+    <ion-delete-button class="ion-minus-circled"
+                       ng-click="onItemDelete(student)">
+    </ion-delete-button>
   </ion-item>
 
 </ion-list>

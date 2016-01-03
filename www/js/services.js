@@ -28,8 +28,14 @@ angular.module('starter.services', ['ngResource', 'ngCookies', 'constants'])
     this.getUserId = function () {
       return $http.get(MYTAMER.url + '/user/getId?username=' + Auth.getUser());
     };
+  })
+  .factory('UserFactory', function (MYTAMER, $resource) {
+    return {
+      generateStudentUser: function() {
+        return $resource(MYTAMER.url + '/user/registerStudent')
+      }
+    }
   });
-
 /* ------------------------------------------------------------- */
 /* -------------------------- Beacons -------------------------- */
 /* ------------------------------------------------------------- */

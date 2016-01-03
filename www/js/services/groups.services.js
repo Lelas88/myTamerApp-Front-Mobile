@@ -12,7 +12,7 @@ angular.module('groups.services', ['ngResource', 'ngRoute', 'constants'])
       saveGroup: function () {
         return $resource(MYTAMER.url + '/group/createGroup');
       },
-      linkStudents: function() {
+      linkStudents: function () {
         return $resource(MYTAMER.url + '/group/linkStudents?groupId=:groupId', {}, {
           'update': {method: 'PUT'}
         });
@@ -21,9 +21,17 @@ angular.module('groups.services', ['ngResource', 'ngRoute', 'constants'])
   })
   .factory('Group', function ($resource, MYTAMER) {
     return {
-      updateGroup: function() {
+      updateGroup: function () {
         return $resource(MYTAMER.url + '/group/updateGroup', {}, {
           'update': {method: 'PUT'}
+        });
+      },
+      unassignStudent: function () {
+        return $resource(MYTAMER.url + '/group/unassignStudent?groupId=:groupId&studentId=:studentId', {
+          groupId: '@groupId',
+          studentId: '@studentId'
+        }, {
+          update: {method: 'PUT', isArray: true}
         });
       },
       getGroupStudents: function () {
