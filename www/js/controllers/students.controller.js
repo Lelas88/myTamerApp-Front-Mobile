@@ -86,7 +86,7 @@ angular.module('students.controller', ['students.services'])
     };
 
     $scope.$on('$ionicView.beforeEnter', function () {
-      $scope.birthdate = $filter("date")(new Date(), 'yyyy-MM-dd');
+      $scope.birthdate = new Date();
     });
 
     $scope.saveStudent = function () {

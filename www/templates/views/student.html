@@ -4,6 +4,9 @@
       <button class="button button-icon ion-edit add-button"
               ng-click="editStudent()"> Edit
       </button>
+      <button class="button button-icon ion-ios-paper-outline add-button"
+              ng-click="showTimesheet()"> Presence
+      </button>
     </div>
   </ion-header-bar>
 
@@ -13,7 +16,41 @@
         Basic Data
       </div>
       <div class="item item-text-wrap">
-        <ng-include src="'/templates/views/student_basic_data.html'"></ng-include>
+        <div class="row" ng-if="student.photoName != null">
+          <div class="list-image-container"
+               style="background-image: url('./img/userImages/{{student.photoName}}');">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">Group:</div>
+          <div class="col">{{student.groupName}}</div>
+        </div>
+        <div class="row">
+          <div class="col">Age:</div>
+          <div class="col">{{student.age}}</div>
+        </div>
+        <div class="row">
+          <div class="col">Weight:</div>
+          <div class="col">{{student.weight}}</div>
+        </div>
+        <div class="row">
+          <div class="col">Height:</div>
+          <div class="col">{{student.height}}</div>
+        </div>
+        <div class="row">
+          <div class="col">BMI:</div>
+          <div class="col">{{student.bmi}}</div>
+        </div>
+        <div class="row">
+          <div class="col">Rank:</div>
+          <div class="col">test</div>
+        </div>
+        <div class="row progress-container">
+          <div class="progress">
+            <p>50%</p>
+          </div>
+        </div>
+
       </div>
     </div>
     <div class="card" ng-if="studentTraningPlans.length > 0">
@@ -22,7 +59,8 @@
       </div>
       <div class="item item-text-wrap">
         <ion-list>
-          <ion-item ng-repeat="trainingPlan in studentTraningPlans" class="student-list-item" href="#/app/trainingplans/{{trainingPlan.id}}">
+          <ion-item ng-repeat="trainingPlan in studentTraningPlans" class="student-list-item"
+                    href="#/app/trainingplans/{{trainingPlan.id}}">
             {{trainingPlan.name}}
           </ion-item>
         </ion-list>

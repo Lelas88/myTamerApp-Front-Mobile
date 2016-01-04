@@ -12,6 +12,37 @@
   </ion-header-bar>
 
   <ion-content>
-    <ng-include src="'/templates/views/students_list.html'"></ng-include>
+    <ion-list ng-repeat="student in students"
+              show-delete="shouldShowDelete">
+
+      <ion-item menu-close href="#/app/students/{{student.id}}">
+        <div class="row">
+
+          <div class="col">
+            <div class="row list-main">
+              <p>{{student.firstName}} {{student.lastName}}</p>
+            </div>
+            <div class="row list-details">
+              <p>{{student.age}} years old</p>
+            </div>
+            <div class="row list-details">
+              <p>{{student.groupName}}</p>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="list-image-container"
+                 style="background-image: url('./img/userImages/{{student.photoName}}');">
+            </div>
+          </div>
+
+        </div>
+        <ion-delete-button class="ion-minus-circled"
+                           ng-click="onItemDelete(student)">
+        </ion-delete-button>
+      </ion-item>
+
+    </ion-list>
+
   </ion-content>
 </ion-view>

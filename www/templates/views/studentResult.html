@@ -1,0 +1,34 @@
+<ion-view view-title="Choose student">
+  <ion-content>
+    <div class="card">
+      <div class="item item-divider">
+        Choose student
+      </div>
+      <div class="item item-text-wrap">
+
+
+        <ion-list ng-repeat="student in students" menu-close href="#/app/result/{{exerciseId}}/{{student.id}}"
+                  option-buttons="itemButtons">
+          <ion-item menu-close href="#/app/result/{{exerciseId}}/{{student.id}}">
+            <div class="row">
+
+              <div class="col">
+                <div class="row list-main">
+                  <p>{{student.firstName}} {{student.lastName}}</p>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="list-image-container"
+                     style="background-image: url('./img/userImages/{{student.photoName}}');">
+                </div>
+              </div>
+
+            </div>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

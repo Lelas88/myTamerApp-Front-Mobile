@@ -15,12 +15,55 @@
       </div>
     </div>
 
-    <div class="card">
-      <div class="item item-divider">
-        Group: {{selectedGroup.name}}
-      </div>
-      <div class="item item-text-wrap">
-        <ng-include src="'/templates/views/dashboard_student.html'"></ng-include>
+      <div class="card">
+        <div class="item item-divider">
+          Group: {{selectedGroup.name}}
+        </div>
+      <div class="item item-text-wrap"><ion-slide-box on-slide-changed="slideHasChanged($index)">
+        <ion-slide ng-repeat="student in students">
+          <div class="dashboard-student-data">
+            <img class="student-photo" src="./img/userImages/{{student.photoName}}"/>
+
+            <div class="column">
+              <p class="attribute-name">First Name:</p>
+
+              <p class="attribute-name">Last Name:</p>
+
+              <p class="attribute-name">Birthdate:</p>
+
+              <p class="attribute-name">Age:</p>
+
+              <p class="attribute-name" ng-if="student.weight">Weight:</p>
+
+              <p class="attribute-name" ng-if="student.height">Height:</p>
+
+              <p class="attribute-name" ng-if="student.bmi">BMI:</p>
+            </div>
+            <div class="column">
+
+              <p class="attribute-value">{{student.firstName}}</p>
+
+              <p class="attribute-value">{{student.lastName}}</p>
+
+              <p class="attribute-value">{{student.birthdate}}</p>
+
+              <p class="attribute-value">{{student.age}}</p>
+
+              <p class="attribute-value" ng-if="student.weight > 0">{{student.weight}}</p>
+
+              <p class="attribute-value" ng-if="student.height > 0">{{student.height}}</p>
+
+              <p class="attribute-value" ng-if="student.bmi > 0">
+          <span
+            ng-class="{blue: student.bmi_status == 1, green: student.bmi_status == 2, orange: student.bmi_status == 3, red: student.bmi_status == 4}">
+            {{student.bmi}}
+          </span>
+              </p>
+            </div>
+          </div>
+        </ion-slide>
+      </ion-slide-box>
+
       </div>
     </div>
 
@@ -28,13 +71,19 @@
       <div class="item item-divider">
         {{chosenStudent.firstName}} {{chosenStudent.lastName}}
       </div>
-      <ng-include src="'/templates/views/dashboard_charts.html'"></ng-include>
+      <div class="item item-text-wrap" ng-if="weight_data[0].length > 0">
+        <canvas id="weight_bar" class="chart chart-line" chart-data="weight_data" chart-labels="weight_labels" chart-legend="true"
+                chart-series="weight_series" chart-options="{showTooltips: false}" chart-colours="weight_colours"></canvas>
+      </div>
+
+      <div class="item item-text-wrap" ng-if="height_data[0].length > 0">
+        <canvas id="height_bar" class="chart chart-line" chart-data="height_data" chart-labels="height_labels" chart-legend="true"
+                chart-series="height_series" chart-options="{showTooltips: false}" chart-colours="height_colours"></canvas>
+      </div>
     </div>
 
 
   </ion-content>
 
 
-  <!-- include bottom menu -->
-  <!--<ng-include src="'/templates/bottom_menu.html'"></ng-include>-->
 </ion-view>

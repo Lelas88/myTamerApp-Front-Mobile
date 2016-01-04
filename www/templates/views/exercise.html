@@ -7,6 +7,9 @@
       <button class="button button-icon ion-clock center-button"
               ng-click="addResult()"> Add Result
       </button>
+      <button class="button button-icon icon ion-minus-circled remove-button"
+              ng-click="shouldShowUnassign = !shouldShowUnassign;"> Unassign
+      </button>
     </div>
   </ion-header-bar>
 
@@ -63,7 +66,12 @@
       </div>
       <div class="item item-text-wrap">
         <ion-list>
-          <ion-item ng-repeat="student in exercise.studentNames" href="#/app/students/{{student.id}}">
+          <ion-item ng-repeat="student in exercise.studentNames">
+            <label class="checkbox" ng-show="shouldShowUnassign">
+              <input type="checkbox" ng-click="unassignStudent(student); $event.stopPropagation();"
+                     ng-model="student.checked" ng-checked="student.checked">
+            </label>
+
             <p>{{student.firstName}} {{student.lastName}}</p>
           </ion-item>
         </ion-list>

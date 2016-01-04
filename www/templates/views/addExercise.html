@@ -1,0 +1,92 @@
+<ion-view view-title="Add Exercise">
+  <form name="exerciseForm">
+    <ion-content>
+      <div class="card">
+        <div class="item item-divider">
+          Discipline
+        </div>
+        <div class="item item-text-wrap">
+          <select name="discipline" id="discipline"
+                  ng-options="discipline.name for discipline in disciplines track by discipline.id"
+                  ng-selected="selectedDiscipline.id"
+                  ng-model="selectedDiscipline"
+                  novalidate="">
+          </select>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item item-divider">
+          Basic data
+        </div>
+        <div class="item item-text-wrap">
+          <input type="text" name="exerciseName" ng-required="true" ng-minlength="1"
+                 ng-model="exerciseToSave.name"
+                 placeholder="Enter exercise name..." size="30" required>
+
+          <div class="item error">
+            <p ng-show="exerciseForm.exerciseName.$error.required">Exercise name is required!</p>
+          </div>
+          <br/>
+          <label>Major unit:</label>
+          <select name="unit" id="unit"
+                  ng-options="unit.unit for unit in units track by unit.id"
+                  ng-selected="selectedUnit.id"
+                  ng-model="selectedUnit"
+                  novalidate="">
+          </select>
+          <br/>
+          <br/>
+          <label>Second unit:</label>
+          <select name="secondUnit" id="secondUnit"
+                  ng-options="secondUnit.unit for secondUnit in units track by secondUnit.id"
+                  ng-selected="selectedSecondUnit.current"
+                  ng-model="selectedSecondUnit.current"
+                  ng-change="updateSelection(selectedSecondUnit.current)"
+                  novalidate="">
+            <option value=""></option>
+          </select>
+          <br/>
+          <br/>
+          <textarea name="exerciseDescription" ng-required="false" ng-minlength="1"
+                    ng-model="exerciseToSave.description"
+                    placeholder="Enter exercise description..." cols="50" rows="15">
+          </textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item item-divider">
+          Exercise picture
+        </div>
+        <div class="item item-text-wrap">
+          <button class="button button-save" ng-click="addPicture()">Add exercise Picture</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item item-divider">
+          Assign students
+        </div>
+        <div class="item item-text-wrap">
+          <ion-list ng-repeat="student in students"
+                    option-buttons="itemButtons">
+            <ion-item menu-close>
+              <div class="row">
+                <label class="checkbox">
+                  <input type="checkbox" ng-click="addToAssignmentList(student); $event.stopPropagation();" ng-model="student.checked">
+                </label>
+                <p class="timesheet-student-data">{{student.firstName}} {{student.lastName}}</p>
+              </div>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+    </ion-content>
+
+    <ion-footer-bar class="bar bar-footer bar-balanced" ng-hide="exerciseForm.$invalid;">
+      <button class="button button-save" ng-click="saveExercise()">save</button>
+    </ion-footer-bar>
+  </form>
+</ion-view>

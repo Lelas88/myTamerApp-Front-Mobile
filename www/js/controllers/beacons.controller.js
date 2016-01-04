@@ -2,9 +2,9 @@
  * Created by rober on 23.11.2015.
  */
 
-angular.module('beacons.controller', ['beacons.services', 'ngCordovaBeacon'])
+//angular.module('beacons.controller', ['beacons.services', 'ngCordovaBeacon'])
 
-  .controller("BeaconsCtrl", function($scope, $rootScope, $ionicPlatform, $cordovaBeacon) {
+  /*.controller("BeaconsCtrl", function($scope, $rootScope, $ionicPlatform, $cordovaBeacon) {
 
     $scope.beacons = {};
 
@@ -27,4 +27,4 @@ angular.module('beacons.controller', ['beacons.services', 'ngCordovaBeacon'])
       $cordovaBeacon.startRangingBeaconsInRegion($cordovaBeacon.createBeaconRegion("estimote", "b9407f30-f5f8-466e-aff9-25556b57fe6d"));
 
     });
-  });
+  });*/

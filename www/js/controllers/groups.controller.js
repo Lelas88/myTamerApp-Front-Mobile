@@ -95,6 +95,8 @@ angular.module('groups.controller', ['groups.services'])
           Group.unassignStudent().update({groupId: $stateParams.groupId, studentId: student.id});
           $scope.shouldShowUnassign = false;
           loadInitialState();
+        } else {
+          student.checked = false;
         }
       });
     }

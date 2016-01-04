@@ -1,0 +1,36 @@
+<ion-view view-title="Add result ({{student.firstName}} {{student.lastName}}) - {{exercise.name}}">
+  <form name="resultForm">
+    <ion-content>
+      <div class="card">
+        <div class="item item-divider">
+          Result
+        </div>
+        <div class="item item-text-wrap">
+          <div class="row">
+            <div class="col">
+              <input type="number" name="value" ng-required="true" ng-minlength="1"
+                     ng-model="resultToSave.value"
+                     placeholder="Enter exercise name..." size="20" required>
+            </div>
+            <div class="col">
+              <select name="unit" id="unit"
+                      ng-options="unit.name for unit in units track by unit.id"
+                      ng-selected="selectedUnit"
+                      ng-model="selectedUnit"
+                      novalidate="">
+              </select>
+            </div>
+          </div>
+
+          <div class="item error">
+            <p ng-show="resultForm.value.$error.required">Result value is required!</p>
+          </div>
+        </div>
+      </div>
+    </ion-content>
+
+    <ion-footer-bar class="bar bar-footer bar-balanced" ng-hide="resultForm.$invalid;">
+      <button class="button button-save" ng-click="saveResult()">save</button>
+    </ion-footer-bar>
+  </form>
+</ion-view>

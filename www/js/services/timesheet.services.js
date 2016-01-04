@@ -9,8 +9,8 @@ angular.module('timesheet.services', ['ngResource', 'ngRoute', 'constants'])
       saveTimesheet: function() {
         return $resource(MYTAMER.url + '/timesheet');
       },
-      checkPresence: function() {
-        return $resource(MYTAMER.url + '/timesheet/check');
+      getStudentPresences: function() {
+        return $resource(MYTAMER.url + '/timesheet/check?groupId=:groupId&dateFrom=:dateFrom&dateTo=:dateTo');
       }
     }
   });

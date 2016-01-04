@@ -14,7 +14,7 @@ angular.module('starter.controllers', ['starter.services'])
 
     $scope.logout = function () {
       Auth.logout();
-      $state.go("login");
+      $state.transitionTo('login');
     };
 
     // Create the login modal that we will use later
@@ -30,18 +30,16 @@ angular.module('starter.controllers', ['starter.services'])
     };
 
     // Open the login modal
-    $scope.login = function () {
+    $scope.loginMe = function () {
       $scope.modal.show();
     };
 
     // Perform the login action when the user submits the login form
     $scope.doLogin = function () {
-
       $timeout(function () {
         if (!angular.isDefined($scope.loginData.username) || !angular.isDefined($scope.loginData.password)
           || $scope.loginData.username.trim() == "" || $scope.loginData.password.trim() == "") {
           alert("Enter both user name and password");
-          return;
         } else if($scope.loginData.username.trim() == 'test' && $scope.loginData.password.trim() == 'test') {
           Auth.setUser({
             username: $scope.loginData.username

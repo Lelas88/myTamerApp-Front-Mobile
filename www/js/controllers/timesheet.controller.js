@@ -52,4 +52,40 @@ angular.module('timesheet.controller', ['timesheet.services', 'ngCordova'])
       errorPopup.then(function (res) {
       });
     }
+  })
+  .controller('PresenceCtrl', function ($scope, $http, $stateParams, $ionicPopup, $state, Group, Timesheet) {
+
+    $scope.dates = {
+      dateFrom: null,
+      dateTo: null
+    };
+
+    $scope.$on('$ionicView.beforeEnter', function () {
+      $scope.dates.dateFrom = new Date();
+      $scope.dates.dateTo = new Date();
+      getPresences();
+    });
+
+    $scope.checkPresences = function () {
+      getPresences();
+    };
+
+    $scope.togglePresence = function (presence) {
+      if ($scope.isPresenceShown(presence)) {
+        $scope.shownGroup = null;
+      } else {
+        $scope.shownGroup = presence;
+      }
+    };
+    $scope.isPresenceShown = function (presence) {
+      return $scope.shownGroup === presence;
+    };
+
+    function getPresences() {
+      $scope.presenceDates = Timesheet.getStudentPresences().query({
+        groupId: $stateParams.groupId,
+        dateFrom: $scope.dates.dateFrom.toISOString().substring(0, 10),
+        dateTo: $scope.dates.dateTo.toISOString().substring(0, 10)
+      });
+    }
   });

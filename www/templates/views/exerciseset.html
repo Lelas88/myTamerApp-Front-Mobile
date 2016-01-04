@@ -4,8 +4,8 @@
       <button class="button button-icon ion-edit center-button"
               ng-click="editExerciseSet()"> Edit
       </button>
-      <button class="button button-icon ion-plus-round center-button"
-              ng-click="assignExercise()"> Assign Exercise
+      <button class="button button-icon icon ion-minus-circled remove-button"
+              ng-click="shouldShowUnassign = !shouldShowUnassign;"> Unassign
       </button>
     </div>
   </ion-header-bar>
@@ -35,8 +35,18 @@
       </div>
       <div class="item item-text-wrap">
         <ion-list>
-          <ion-item ng-repeat="exercise in exerciseSet.exercises" href="#/app/exercises/{{exercise.id}}">
-            <p>{{exercise.name}}</p>
+          <ion-item ng-repeat="exercise in exerciseSet.exercises"> <!--href="#/app/exercises/{{exercise.id}}"-->
+            <div class="row">
+              <label class="checkbox"
+                     ng-show="shouldShowUnassign">
+                <input type="checkbox" ng-click="unassignExercise(exercise); $event.stopPropagation();"
+                       ng-model="student.checked"
+                       ng-checked="student.checked">
+              </label>
+              <p>{{exercise.name}}</p>
+            </div>
+
+
           </ion-item>
         </ion-list>
       </div>

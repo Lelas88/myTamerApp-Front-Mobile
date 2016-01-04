@@ -1,0 +1,54 @@
+<ion-view view-title="Add Exercise">
+  <form name="exerciseSetForm">
+    <ion-content>
+
+      <div class="card">
+        <div class="item item-divider">
+          Exercise Set Data:
+        </div>
+        <div class="item item-text-wrap">
+          <input type="text" name="setName" ng-required="true" ng-minlength="1"
+                 ng-model="exerciseSetToSave.name"
+                 placeholder="Enter exercise set name..." size="30" required>
+
+          <div class="item error">
+            <p ng-show="exerciseSetForm.setName.$error.required">Exercise set name is required!</p>
+          </div>
+          <input type="number" name="setTime" ng-required="true" ng-minlength="1"
+                 ng-model="exerciseSetToSave.exerciseLength"
+                 placeholder="Set time (minutes)..." size="30" required>
+
+          <div class="item error">
+            <p ng-show="exerciseSetForm.setTime.$error.required">Exercise set time is required!</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item item-divider">
+          Assign exercises
+        </div>
+        <div class="item item-text-wrap">
+          <ion-list ng-repeat="exercise in exercises"
+                    option-buttons="itemButtons">
+            <ion-item menu-close>
+              <div class="row">
+                <label class="checkbox">
+                  <input type="checkbox" ng-click="addToAssignmentList(exercise); $event.stopPropagation();"
+                         ng-model="exercise.checked">
+                </label>
+
+                <p class="timesheet-student-data">{{exercise.name}}</p>
+              </div>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+    </ion-content>
+
+    <ion-footer-bar class="bar bar-footer bar-balanced" ng-hide="exerciseSetForm.$invalid;">
+      <button class="button button-save" ng-click="saveExerciseSet()">save</button>
+    </ion-footer-bar>
+  </form>
+</ion-view>

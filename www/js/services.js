@@ -39,5 +39,5 @@ angular.module('starter.services', ['ngResource', 'ngCookies', 'constants'])
 /* ------------------------------------------------------------- */
 /* -------------------------- Beacons -------------------------- */
 /* ------------------------------------------------------------- */
-angular.module('beacons.services', ['ngCordovaBeacon']);
+//angular.module('beacons.services', ['ngCordovaBeacon']);
 

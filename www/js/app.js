@@ -4,17 +4,17 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller', 'beacons.controller',
+angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller',/* 'beacons.controller',*/
   'students.controller', 'groups.controller', 'timesheet.controller', 'exercises.controller', 'exercisesets.controller',
-  'trainingplans.controller', 'meals.controller', 'mealsets.controller', 'diets.controller'])
+  'trainingplans.controller', 'meals.controller', 'mealsets.controller', 'result.controller', 'diets.controller'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
       if (window.cordova && window.cordova.plugins.Keyboard) {
-        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-        cordova.plugins.Keyboard.disableScroll(true);
+        //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        //cordova.plugins.Keyboard.disableScroll(true);
 
       }
       if (window.StatusBar) {
@@ -110,7 +110,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
         views: {
           'menuContent': {
             templateUrl: "templates/views/presence.html",
-            controller: 'TimesheetCtrl'
+            controller: 'PresenceCtrl'
           }
         }
       })
@@ -175,6 +175,46 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
         }
       })
 
+      .state('app.addexercise', {
+        url: "/addExercise",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/addExercise.html",
+            controller: 'AddExerciseCtrl'
+          }
+        }
+      })
+
+      .state('app.editexercise', {
+        url: "/editExercise/:exerciseId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/editExercise.html",
+            controller: 'EditExerciseCtrl'
+          }
+        }
+      })
+
+      .state('app.studentresult', {
+        url: "/result/:exerciseId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/studentResult.html",
+            controller: 'ResultCtrl'
+          }
+        }
+      })
+
+      .state('app.result', {
+        url: "/result/:exerciseId/:studentId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/addResult.html",
+            controller: 'AddResultCtrl'
+          }
+        }
+      })
+
       .state('app.exercisesets', {
         url: "/exercisesets",
         views: {
@@ -195,6 +235,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
         }
       })
 
+      .state('app.addexerciseset', {
+        url: "/addexercisesets",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/addExerciseset.html",
+            controller: 'AddExerciseSetCtrl'
+          }
+        }
+      })
+
+      .state('app.editexerciseset', {
+        url: "/exercisesets/edit/:exerciseSetId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/editExerciseset.html",
+            controller: 'EditExerciseSetCtrl'
+          }
+        }
+      })
+
       .state('app.trainingplans', {
         url: "/trainingplans",
         views: {
@@ -211,6 +271,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
           'menuContent': {
             templateUrl: "templates/views/trainingplan.html",
             controller: 'TrainingPlanCtrl'
+          }
+        }
+      })
+
+      .state('app.addtrainingplan', {
+        url: "/trainingplan/add",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/addTrainingPlan.html",
+            controller: 'AddTrainingPlanCtrl'
           }
         }
       })
@@ -275,7 +345,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
         }
       })
 
-      .state('app.surroundings', {
+      /*.state('app.surroundings', {
         url: "/surroundings",
         views: {
           'menuContent': {
@@ -283,7 +353,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
             controller: 'BeaconsCtrl'
           }
         }
-      });
+      })*/;
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/dashboard');

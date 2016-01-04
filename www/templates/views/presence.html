@@ -6,22 +6,53 @@
   <ion-content>
     <div class="row">
       <div class="col">
-        <label>From:</label>
-        <input type="date" name="fromDate" max="{{today}}" min="01-01-1900" defaultValue="{{today}}">
+        <p>Time frames: </p>
       </div>
+    </div>
+    <div class="row">
       <div class="col">
-        <label>To:</label>
-        <input type="date" name="toDate" max="{{today}}" min="01-01-1900" defaultValue="{{today}}">
+        <label class="item item-input">
+          <input type="date" ng-model="dates.dateFrom" value={{dates.dateFrom}} placeholder="yyyy-MM-dd">
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="item item-input">
+          <input type="date" ng-model="dates.dateTo" value={{dates.dateTo}} placeholder="yyyy-MM-dd">
+        </label>
       </div>
     </div>
 
-    <ion-list ng-repeat="student in students"
-              option-buttons="itemButtons">
-      <ion-item menu-close>
-        <div class="row">
-          <p class="timesheet-student-data">{{student.firstName}} {{student.lastName}}</p>
-        </div>
-      </ion-item>
-    </ion-list>
+
+    <div class="card">
+      <div class="item item-divider">
+        Presence List:
+      </div>
+      <div class="item item-text-wrap">
+        <ion-list ng-if="presenceDates.length > 0" ng-repeat="presence in presenceDates"
+                  option-buttons="itemButtons">
+          <ion-item menu-close class="item-stable"
+                    ng-click="togglePresence(presence)"
+                    ng-class="{active: isPresenceShown(presence)}">
+            <div class="row">
+                <i class="icon" ng-class="isPresenceShown(presence) ? 'ion-minus' : 'ion-plus'"></i>
+                &nbsp;&nbsp;&nbsp;
+                <p>{{presence.studentName}} - {{presence.presenceCounter}} time(s)</p>
+            </div>
+          </ion-item>
+          <ion-item class="item-accordion"
+                    ng-repeat="date in presence.presenceDates"
+                    ng-show="isPresenceShown(presence)">
+            {{date}}
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+
   </ion-content>
+
+  <ion-footer-bar class="bar bar-footer bar-royal">
+    <button class="button button-save" ng-click="checkPresences()"> Check</button>
+  </ion-footer-bar>
 </ion-view>
