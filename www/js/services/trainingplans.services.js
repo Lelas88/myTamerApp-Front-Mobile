@@ -28,35 +28,43 @@ angular.module('trainingplans.services', ['ngResource', 'ngRoute', 'constants'])
       assignExerciseSetsToTrainingPlan: function () {
         return $resource(MYTAMER.url + '/trainingPlan/assignExerciseSets?trainingPlanId=:trainingPlanId')
       },
-      unassignExerciseSetFromTrainingPlan: function () {
+      unassignStudentFromTrainingPlan: function () {
         return $resource(MYTAMER.url + '/trainingPlan/unassignStudent?trainingPlanId=:trainingPlanId&studentId=:studentId')
       },
-      unassignExerciseSetsToTrainingPlan: function () {
-        return $resource(MYTAMER.url + '/trainingPlan/unassignExerciseSet?trainingPlanId=:trainingPlanId&exerciseSetId:=exerciseSetId')
+      unassignExerciseSetFromTrainingPlan: function () {
+        return $resource(MYTAMER.url + '/trainingPlan/unassignExerciseSet?trainingPlanId=:trainingPlanId&exerciseSetId=:exerciseSetId')
       },
-      assignDietToTrainingPlan: function() {
+      assignDietToTrainingPlan: function () {
         return $resource(MYTAMER.url + '/trainingPlan/assignDiets?trainingPlanId=:trainingPlanId')
       },
-      unassignDietFromTrainingPlan: function() {
+      unassignDietFromTrainingPlan: function () {
         return $resource(MYTAMER.url + '/trainingPlan/unassignDiet?trainingPlanId=:trainingPlanId&dietId=:dietId')
       },
-      getNotAssignedStudentsToTrainingPlan: function() {
+      getNotAssignedStudentsToTrainingPlan: function () {
         return $resource(MYTAMER.url + '/trainingPlan/notAssignedStudents?trainingPlanId=:trainingPlanId&userId=:userId')
       },
-      getNotAssignedExerciseSetsToTrainingPlan: function() {
+      getNotAssignedExerciseSetsToTrainingPlan: function () {
         return $resource(MYTAMER.url + '/trainingPlan/notAssignedExerciseSets?trainingPlanId=:trainingPlanId&userId=:userId')
       },
-      getNotAssignedDietsToTrainingPlan: function() {
+      getNotAssignedDietsToTrainingPlan: function () {
         return $resource(MYTAMER.url + '/trainingPlan/notAssignedDiets?trainingPlanId=:trainingPlanId&userId=:userId')
       },
-      getAssignedStudentsToTrainingPlan: function() {
-        return $resource(MYTAMER.url + '/trainingPlan/assignedStudents?trainingPlanId=:trainingPlanId&userId=:userId')
+      getAssignedStudentsToTrainingPlan: function () {
+        return $resource(MYTAMER.url + '/trainingPlan/assignedStudents?trainingPlanId=:trainingPlanId')
       },
-      getAssignedExerciseSetsToTrainingPlan: function() {
-        return $resource(MYTAMER.url + '/trainingPlan/assignedExerciseSets?trainingPlanId=:trainingPlanId&userId=:userId')
+      getAssignedExerciseSetsToTrainingPlan: function () {
+        return $resource(MYTAMER.url + '/trainingPlan/assignedExerciseSets?trainingPlanId=:trainingPlanId')
       },
-      getAssignedDietsToTrainingPlan: function() {
-        return $resource(MYTAMER.url + '/trainingPlan/assignedDiets?trainingPlanId=:trainingPlanId&userId=:userId')
+      getAssignedDietsToTrainingPlan: function () {
+        return $resource(MYTAMER.url + '/trainingPlan/assignedDiets?trainingPlanId=:trainingPlanId')
+      },
+      updateDietStatus: function () {
+        return $resource(MYTAMER.url + '/trainingPlan/activeDiet?trainingPlanId=:trainingPlanId&dietId=:dietId', {
+          trainingPlanId: '@trainingPlanId',
+          dietId: '@dietId'
+        }, {
+          'update': {method: 'PUT', isArray: true}
+        })
       }
     }
   });

@@ -1,0 +1,72 @@
+<ion-view view-title="Add Diet">
+  <form name="dietForm">
+    <ion-content>
+
+      <div class="card">
+        <div class="item item-divider">
+          Diet Data:
+        </div>
+        <div class="item item-text-wrap">
+          <input type="text" name="setName" ng-required="true" ng-minlength="1"
+                 ng-model="dietToSave.name"
+                 placeholder="Enter diet name..." size="30" required>
+
+          <div class="item error">
+            <p ng-show="dietForm.setName.$error.required">Diet name is required!</p>
+          </div>
+          <textarea name="dietDescription" ng-required="false" ng-minlength="1"
+                    ng-model="dietToSave.description"
+                    placeholder="Enter diet description..." cols="50" rows="15">
+          </textarea>
+        </div>
+      </div>
+
+      <div class="card" ng-show="mealSets.length > 0">
+        <div class="item item-divider">
+          Assign meal sets
+        </div>
+        <div class="item item-text-wrap">
+          <ion-list ng-repeat="mealSet in mealSets"
+                    option-buttons="itemButtons">
+            <ion-item menu-close>
+              <div class="row">
+                <label class="checkbox">
+                  <input type="checkbox" ng-click="addToAssignedMealSets(mealSet); $event.stopPropagation();"
+                         ng-model="mealSet.checked">
+                </label>
+
+                <p class="timesheet-student-data">{{mealSet.name}}</p>
+              </div>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+      <div class="card" ng-show="trainingPlans.length > 0">
+        <div class="item item-divider">
+          Assign diet to training plans
+        </div>
+        <div class="item item-text-wrap">
+          <ion-list ng-repeat="trainingPlan in trainingPlans"
+                    option-buttons="itemButtons">
+            <ion-item menu-close>
+              <div class="row">
+                <label class="checkbox">
+                  <input type="checkbox" ng-click="addToAssignedTrainingPlans(trainingPlan); $event.stopPropagation();"
+                         ng-model="trainingPlan.checked">
+                </label>
+
+                <p class="timesheet-student-data">{{trainingPlan.name}}</p>
+              </div>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+    </ion-content>
+
+    <ion-footer-bar class="bar bar-footer bar-balanced" ng-hide="dietForm.$invalid;">
+      <button class="button button-save" ng-click="saveDiet()">save</button>
+    </ion-footer-bar>
+  </form>
+</ion-view>

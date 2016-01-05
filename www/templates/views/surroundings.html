@@ -1,27 +1,55 @@
-<!--<ion-view view-title="Surroundings" ng-controller="BeaconsCtrl">-->
-  <!--<ion-content>-->
-    <!--<p>test</p>-->
-    <!--<div class="list">-->
-      <!--<div class="item" ng-repeat="(key, value) in beacons">-->
-        <!--<div class="row">-->
-          <!--<div class="col truncate">-->
-            <!--{{value.uuid}}-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="row">-->
-          <!--<div class="col">-->
-            <!--major: {{value.major}}-->
-          <!--</div>-->
-          <!--<div class="col">-->
-            <!--minor: {{value.minor}}-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="row">-->
-          <!--<div class="col">-->
-            <!--{{value.proximity}}-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</ion-content>-->
-<!--</ion-view>-->
+<ion-view view-title="Surroundings">
+  <ion-header-bar align-title="right" class="bar-dark bar-subheader">
+    <div class="buttons">
+      <button class="button button-icon ion-bluetooth center-button"
+              ng-click="bluetoothSwitch()" ng-if="!bluetoothActive"> Activate
+      </button>
+      <button class="button button-icon ion-bluetooth center-button"
+              ng-click="bluetoothSwitch()" ng-if="bluetoothActive"> Deactivate
+      </button>
+      <button class="button button-icon ion-refresh center-button"
+              ng-click="searchBeacons()" ng-if="!searchingBeacons"> Search beacons
+      </button>
+      <button class="button button-icon ion-alert-circled center-button"
+              ng-click="stopBeacons()" ng-if="searchingBeacons"> Stop searching
+      </button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+    <div class="list">
+      <ion-list class="item" ng-repeat="exercise in exercises"
+                option-buttons="itemButtons">
+        <ion-item menu-close href="#/app/exercises/{{exercise.id}}">
+          <div class="row">
+
+            <label class="checkbox">
+              <input type="checkbox" ng-click="addToAssignmentList(exercise); $event.stopPropagation();"
+                     ng-model="exercise.checked">
+            </label>
+
+            <div class="col">
+              <div class="row list-main">
+                <p>{{exercise.name}}</p>
+              </div>
+              <div class="row list-details">
+                <p>{{exercise.discipline}}</p>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="list-image-container"
+                   style="background-image: url('./img/userImages/exercises/{{exercise.iconName}}');">
+              </div>
+            </div>
+
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+
+  <ion-footer-bar class="bar bar-footer bar-balanced">
+    <button class="button button-save" ng-click="saveExercises()">Save selected exercises</button>
+  </ion-footer-bar>
+</ion-view>

@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller',/* 'beacons.controller',*/
+angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller', 'beacons.controller',
   'students.controller', 'groups.controller', 'timesheet.controller', 'exercises.controller', 'exercisesets.controller',
   'trainingplans.controller', 'meals.controller', 'mealsets.controller', 'result.controller', 'diets.controller'])
 
@@ -285,6 +285,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
         }
       })
 
+      .state('app.edittrainingplan', {
+        url: "/trainingplan/edit/:trainingPlanId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/editTrainingPlan.html",
+            controller: 'EditTrainingPlanCtrl'
+          }
+        }
+      })
+
       .state('app.meals', {
         url: "/meals",
         views: {
@@ -301,6 +311,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
           'menuContent': {
             templateUrl: "templates/views/meal.html",
             controller: 'MealCtrl'
+          }
+        }
+      })
+
+      .state('app.addmeal', {
+        url: "/meal/add",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/addMeal.html",
+            controller: 'AddMealCtrl'
+          }
+        }
+      })
+
+      .state('app.editmeal', {
+        url: "/meal/edit/:mealId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/editMeal.html",
+            controller: 'EditMealCtrl'
           }
         }
       })
@@ -325,6 +355,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
         }
       })
 
+      .state('app.addmealset', {
+        url: "/mealset/add",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/addMealSet.html",
+            controller: 'AddMealSetCtrl'
+          }
+        }
+      })
+
+      .state('app.editmealset', {
+        url: "/mealset/edit/:mealSetId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/editMealSet.html",
+            controller: 'EditMealSetCtrl'
+          }
+        }
+      })
+
       .state('app.diets', {
         url: "/diets",
         views: {
@@ -345,7 +395,37 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
         }
       })
 
-      /*.state('app.surroundings', {
+      .state('app.adddiet', {
+        url: "/diet/add",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/addDiet.html",
+            controller: 'AddDietCtrl'
+          }
+        }
+      })
+
+      .state('app.editdiet', {
+        url: "/diet/edit/:dietId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/editDiet.html",
+            controller: 'EditDietCtrl'
+          }
+        }
+      })
+
+      .state('app.activediet', {
+        url: "/trainingPlan/:trainingPlanId/activeDiet",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/views/activeDiet.html",
+            controller: 'ActiveTrainingPlanCtrl'
+          }
+        }
+      })
+
+      .state('app.surroundings', {
         url: "/surroundings",
         views: {
           'menuContent': {
@@ -353,7 +433,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'dashboard.controller
             controller: 'BeaconsCtrl'
           }
         }
-      })*/;
+      });
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/dashboard');

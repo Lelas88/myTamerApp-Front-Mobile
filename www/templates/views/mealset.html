@@ -4,8 +4,8 @@
       <button class="button button-icon ion-edit center-button"
               ng-click="editMealSet()"> Edit
       </button>
-      <button class="button button-icon ion-plus-round center-button"
-              ng-click="assignMeal()"> Assign Meal
+      <button class="button button-icon ion-minus-round center-button"
+              ng-click="shouldShowDelete = !shouldShowDelete"> Unssign Meal
       </button>
     </div>
   </ion-header-bar>
@@ -17,9 +17,13 @@
         Meals assigned
       </div>
       <div class="item item-text-wrap">
-        <ion-list>
-          <ion-item ng-repeat="meal in mealSet.meals" href="#/app/meals/{{meal.id}}">
+        <ion-list ng-repeat="meal in mealSet.meals"
+                  show-delete="shouldShowDelete">
+          <ion-item href="#/app/meals/{{meal.id}}">
             <p>{{meal.name}}</p>
+            <ion-delete-button class="ion-minus-circled"
+                               ng-click="unassignMeal(meal)">
+            </ion-delete-button>
           </ion-item>
         </ion-list>
       </div>

@@ -129,3 +129,10 @@
 div.error p {
   color: red;
 }
+
+.active_diet {
+  text-align: center;
+  font-weight: bold;
+  color: greenyellow;
+  text-transform: uppercase;
+}

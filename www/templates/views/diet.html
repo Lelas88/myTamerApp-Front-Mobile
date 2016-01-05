@@ -26,11 +26,19 @@
     <div class="card" ng-if="diet.mealSets.length > 0">
       <div class="item item-divider">
         Meal Sets assigned
+        <div class="buttons">
+          <button class="button button-icon ion-minus-round center-button" ng-click="showDeleteMealSet = !showDeleteMealSet">
+            Unassign meal set
+          </button>
+        </div>
       </div>
       <div class="item item-text-wrap">
-        <ion-list>
+        <ion-list show-delete="showDeleteMealSet">
           <ion-item ng-repeat="mealSet in diet.mealSets" href="#/app/mealsets/{{mealSet.id}}">
             <p>{{mealSet.name}}</p>
+            <ion-delete-button class="ion-minus-circled"
+                               ng-click="unassignMealSet(mealSet)">
+            </ion-delete-button>
           </ion-item>
         </ion-list>
       </div>
@@ -39,11 +47,19 @@
     <div class="card" ng-if="diet.trainingPlans.length > 0">
       <div class="item item-divider">
         Training Plans with this diet assigned
+        <div class="buttons">
+          <button class="button button-icon ion-minus-round center-button" ng-click="showDeleteTrainingPlan = !showDeleteTrainingPlan">
+            Unassign diet from training plan
+          </button>
+        </div>
       </div>
       <div class="item item-text-wrap">
-        <ion-list>
+        <ion-list show-delete="showDeleteTrainingPlan">
           <ion-item ng-repeat="trainingPlan in diet.trainingPlans" href="#/app/trainingplans/{{trainingPlan.id}}">
             <p>{{trainingPlan.name}}</p>
+            <ion-delete-button class="ion-minus-circled"
+                               ng-click="unassignTrainingPlan(trainingPlan)">
+            </ion-delete-button>
           </ion-item>
         </ion-list>
       </div>

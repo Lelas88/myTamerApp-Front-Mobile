@@ -1,0 +1,12 @@
+<ion-view view-title="Set Active Diet" ng-controller="ActiveTrainingPlanCtrl">
+  <ion-content>
+    <ion-list ng-repeat="diet in diets"
+              option-buttons="itemButtons">
+      <ion-item menu-close ng-click="setActiveDiet(diet)">
+        <div class="row">
+          <p class="timesheet-student-data">{{diet.name}}</p>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -31,7 +31,7 @@ angular.module('starter.services', ['ngResource', 'ngCookies', 'constants'])
   })
   .factory('UserFactory', function (MYTAMER, $resource) {
     return {
-      generateStudentUser: function() {
+      generateStudentUser: function () {
         return $resource(MYTAMER.url + '/user/registerStudent')
       }
     }
@@ -39,5 +39,15 @@ angular.module('starter.services', ['ngResource', 'ngCookies', 'constants'])
 /* ------------------------------------------------------------- */
 /* -------------------------- Beacons -------------------------- */
 /* ------------------------------------------------------------- */
-//angular.module('beacons.services', ['ngCordovaBeacon']);
+angular.module('beacons.services', ['ngCordovaBeacon', 'ngResource', 'ngRoute', 'constants'])
+  .factory('Beacon', function (MYTAMER, $resource) {
+    return {
+      matchBeaconExercises: function () {
+        return $resource(MYTAMER.url + '/beacon/getExercises');
+      },
+      downloadExercises: function () {
+        return $resource(MYTAMER.url + '/beacon/downloadExercises?userId=:userId');
+      }
+    }
+  });
 

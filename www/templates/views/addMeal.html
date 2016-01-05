@@ -1,0 +1,74 @@
+<ion-view view-title="Add Meal">
+  <form name="mealForm">
+    <ion-content>
+
+      <div class="card">
+        <div class="item item-divider">
+          Meal Data:
+        </div>
+        <div class="item item-text-wrap">
+          <input type="text" name="mealName" ng-required="true" ng-minlength="1"
+                 ng-model="mealToSave.name"
+                 placeholder="Enter meal name..." size="30" required>
+
+          <div class="item error">
+            <p ng-show="mealForm.mealName.$error.required">Meal name is required!</p>
+          </div>
+          <textarea name="description" name="mealDescription" ng-required="false" ng-minlength="1"
+                    ng-model="mealToSave.description"
+                    placeholder="Enter meal description..." cols="50" rows="15">
+          </textarea>
+          <textarea name="ingridients" name="mealIngridients" ng-required="false" ng-minlength="1"
+                    ng-model="mealToSave.ingridients"
+                    placeholder="Enter meal ingridients..." cols="50" rows="15">
+          </textarea>
+          <textarea name="preparing" name="mealPreparing" ng-required="false" ng-minlength="1"
+                    ng-model="mealToSave.preparing"
+                    placeholder="Enter meal preparation instruction..." cols="50" rows="15">
+          </textarea>
+
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item item-divider">
+          Meal picture:
+        </div>
+        <div class="item item-text-wrap">
+          <button class="button button-save" ng-click="addPicture()">Add meal picture</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item item-divider">
+          Add meal nutritions
+        </div>
+        <div class="item item-text-wrap">
+          <ion-list ng-repeat="nutrition in nutritions"
+                    option-buttons="itemButtons">
+            <ion-item menu-close>
+              <div class="row">
+                <div class="col">
+                  <p>{{nutrition.name}}</p>
+                </div>
+                <div class="col">
+                  <input type="number" name="nutrition.value"  ng-minlength="1"
+                         ng-model="nutrition.value"
+                         placeholder="Enter value..." size="30" >
+                </div>
+                <div class="col">
+                  <p>{{nutrition.unit}}</p>
+                </div>
+              </div>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+    </ion-content>
+
+    <ion-footer-bar class="bar bar-footer bar-balanced" ng-hide="mealForm.$invalid;">
+      <button class="button button-save" ng-click="saveMeal()">save</button>
+    </ion-footer-bar>
+  </form>
+</ion-view>

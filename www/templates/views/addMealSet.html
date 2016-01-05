@@ -1,0 +1,47 @@
+<ion-view view-title="Add Meal Set">
+  <form name="mealSetForm">
+    <ion-content>
+
+      <div class="card">
+        <div class="item item-divider">
+          Meal Set Data:
+        </div>
+        <div class="item item-text-wrap">
+          <input type="text" name="setName" ng-required="true" ng-minlength="1"
+                 ng-model="mealSetToSave.name"
+                 placeholder="Enter exercise set name..." size="30" required>
+
+          <div class="item error">
+            <p ng-show="mealSetForm.setName.$error.required">Meal set name is required!</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item item-divider">
+          Assign meals
+        </div>
+        <div class="item item-text-wrap">
+          <ion-list ng-repeat="meal in meals"
+                    option-buttons="itemButtons">
+            <ion-item menu-close>
+              <div class="row">
+                <label class="checkbox">
+                  <input type="checkbox" ng-click="addToAssignmentList(meal); $event.stopPropagation();"
+                         ng-model="meal.checked">
+                </label>
+
+                <p class="timesheet-student-data">{{meal.name}}</p>
+              </div>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+    </ion-content>
+
+    <ion-footer-bar class="bar bar-footer bar-balanced" ng-hide="mealSetForm.$invalid;">
+      <button class="button button-save" ng-click="saveMealSet()">save</button>
+    </ion-footer-bar>
+  </form>
+</ion-view>

@@ -9,7 +9,7 @@
 
   <ion-content>
 
-    <div class="card" ng-if="meal.description.length > 0">
+    <div class="card" ng-if="meal.description != null">
       <div class="item item-divider">
         Details
       </div>
@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <div class="card" ng-if="meal.ingridients.length > 0">
+    <div class="card" ng-if="meal.ingridients != null">
       <div class="item item-divider">
         Ingridients
       </div>
@@ -42,7 +42,7 @@
       </div>
     </div>
 
-    <div class="card" ng-if="meal.preparing.length > 0">
+    <div class="card" ng-if="meal.preparing != null">
       <div class="item item-divider">
         Preparing
       </div>
@@ -50,6 +50,21 @@
         <div class="row">
           <div class="col">
             <div class="description" ng-bind-html="meal.preparing">{{meal.preparing}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" ng-if="nutritions.length > 0">
+      <div class="item item-divider">
+        Nutritions
+      </div>
+      <div class="item item-text-wrap">
+        <div ng-repeat="nutrition in nutritions">
+          <div class="row">
+            <div class="col">
+              <p>{{nutrition.name}} {{nutrition.value}} {{nutrition.unit}}</p>
             </div>
           </div>
         </div>

@@ -4,11 +4,8 @@
       <button class="button button-icon ion-edit center-button"
               ng-click="editTrainingPlan()"> Edit
       </button>
-      <button class="button button-icon ion-plus-round center-button"
-              ng-click="assignExerciseSet()"> Exercise Set
-      </button>
-      <button class="button button-icon ion-plus-round center-button"
-              ng-click="assignStudent()"> Student
+      <button class="button button-icon ion-pizza center-button"
+              ng-click="setActiveDiet()"> Set Active Diet
       </button>
     </div>
   </ion-header-bar>
@@ -30,40 +27,66 @@
       </div>
     </div>
 
-    <div class="card" ng-if="trainingPlan.exerciseSets.length > 0">
+    <div class="card" ng-if="trainingPlan.exerciseSets != null">
       <div class="item item-divider">
         Exercise Sets assigned
+        <div class="buttons">
+          <button class="button button-icon ion-minus-round center-button"
+                  ng-click="showDeleteExerciseSet = !showDeleteExerciseSet"> Unassign Exercise Set
+          </button>
+        </div>
       </div>
       <div class="item item-text-wrap">
-        <ion-list>
+        <ion-list show-delete="showDeleteExerciseSet">
           <ion-item ng-repeat="exerciseSet in trainingPlan.exerciseSets" href="#/app/exercisesets/{{exerciseSet.id}}">
             <p>{{exerciseSet.name}}</p>
+            <ion-delete-button class="ion-minus-circled"
+                               ng-click="unassignExerciseSet(exerciseSet)">
+            </ion-delete-button>
           </ion-item>
         </ion-list>
       </div>
     </div>
 
-    <div class="card" ng-if="trainingPlan.students.length > 0">
+    <div class="card" ng-if="trainingPlan.students != null">
       <div class="item item-divider">
         Students assigned
+        <div class="buttons">
+          <button class="button button-icon ion-minus-round center-button"
+                  ng-click="showDeleteStudent = !showDeleteStudent"> Unassign Student
+          </button>
+        </div>
       </div>
       <div class="item item-text-wrap">
-        <ion-list>
+        <ion-list show-delete="showDeleteStudent">
           <ion-item ng-repeat="student in trainingPlan.students" href="#/app/students/{{student.id}}">
             <p>{{student.firstName}} {{student.lastName}}</p>
+            <ion-delete-button class="ion-minus-circled"
+                               ng-click="unassignStudent(student)">
+            </ion-delete-button>
           </ion-item>
         </ion-list>
       </div>
     </div>
 
-    <div class="card" ng-if="trainingPlan.diets.length > 0">
+    <div class="card" ng-if="trainingPlan.diets != null">
       <div class="item item-divider">
         Diets assigned
+        <div class="buttons">
+          <button class="button button-icon ion-minus-round center-button" ng-click="showDeleteDiet = !showDeleteDiet">
+            Unassign Diet
+          </button>
+        </div>
       </div>
       <div class="item item-text-wrap">
-        <ion-list>
-          <ion-item ng-repeat="diet in trainingPlan.diets" href="#/app/diets/{{diet.id}}">
-            <p>{{diet.name}}</p>
+        <ion-list show-delete="showDeleteDiet" ng-repeat="diet in diets">
+          <ion-item href="#/app/diets/{{diet.id}}">
+            <p ng-class="{'active_diet': diet.active == true}">
+              <i ng-if="diet.active == true" class="ion-checkmark-round"></i> {{diet.name}}
+              <span style="color: green; text-transform: none;" ng-if="diet.active == 1">(active)</span></p>
+            <ion-delete-button class="ion-minus-circled"
+                               ng-click="unassignDiet(diet)">
+            </ion-delete-button>
           </ion-item>
         </ion-list>
       </div>

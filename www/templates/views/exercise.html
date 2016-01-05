@@ -1,5 +1,5 @@
 <ion-view view-title="{{exercise.name}}">
-  <ion-header-bar align-title="right" class="bar-dark bar-subheader">
+  <ion-header-bar align-title="right" class="bar-dark bar-subheader" ng-if="exercise.userId != null">
     <div class="buttons">
       <button class="button button-icon ion-edit center-button"
               ng-click="editExercise()"> Edit
