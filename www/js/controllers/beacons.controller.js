@@ -4,7 +4,7 @@
 
 angular.module('beacons.controller', ['beacons.services', 'ngCordovaBeacon'])
 
-  .controller("BeaconsCtrl", function($scope, $state, $rootScope, $ionicPlatform, $cordovaBeacon, Beacon, User) {
+  .controller("BeaconsCtrl", function ($scope, $state, $rootScope, $ionicPlatform, $cordovaBeacon, Beacon, User) {
 
     $scope.$on('$ionicView.beforeEnter', function () {
       $scope.bluetoothActive = false;
@@ -16,39 +16,44 @@ angular.module('beacons.controller', ['beacons.services', 'ngCordovaBeacon'])
     var assignment = [];
 
     $scope.beaconData = {
-      "uuid" : null,
-      "minor" : null,
-      "major" : null
+      "uuid": null,
+      "minor": null,
+      "major": null
     };
 
     $scope.beacons = {};
 
-    $ionicPlatform.ready(function() {
+    $ionicPlatform.ready(function () {
 
       $cordovaBeacon.requestWhenInUseAuthorization();
 
-      $rootScope.$on("$cordovaBeacon:didRangeBeaconsInRegion", function(event, pluginResult) {
+      $rootScope.$on("$cordovaBeacon:didRangeBeaconsInRegion", function (event, pluginResult) {
         var uniqueBeaconKey;
-        for(var i = 0; i < pluginResult.beacons.length; i++) {
+
+        for (var i = 0; i < pluginResult.beacons.length; i++) {
           uniqueBeaconKey = pluginResult.beacons[i].uuid + ":" + pluginResult.beacons[i].major + ":" + pluginResult.beacons[i].minor;
           $scope.beacons[uniqueBeaconKey] = pluginResult.beacons[i];
 
-          $scope.beaconData.uuid = pluginResult.beacons[i].uuid;
-          $scope.beaconData.minor = pluginResult.beacons[i].minor;
-          $scope.beaconData.major = pluginResult.beacons[i].major;
-          Beacon.matchBeaconExercises().query($scope.beaconData, function(data) {
-            data.forEach(function(item) {
-              if(exerciseIds.indexOf(item.id) === -1) {
-                exerciseIds.push(item.id);
-                $scope.exercises.push(item);
-              }
-            });
-          });
+          getExercisesMatchingFoundBeacons(pluginResult.beacons[i]);
         }
         $scope.$apply();
       });
 
-      $scope.addToAssignmentList = function(exercise) {
+      function getExercisesMatchingFoundBeacons(beacon) {
+        $scope.beaconData.uuid = beacon.uuid;
+        $scope.beaconData.minor = beacon.minor;
+        $scope.beaconData.major = beacon.major;
+        Beacon.matchBeaconExercises().query($scope.beaconData, function (data) {
+          data.forEach(function (item) {
+            if (exerciseIds.indexOf(item.id) === -1) {
+              exerciseIds.push(item.id);
+              $scope.exercises.push(item);
+            }
+          });
+        });
+      }
+
+      $scope.addToAssignmentList = function (exercise) {
         if (exercise.checked) {
           assignment.push(exercise.id);
         } else {
@@ -67,7 +72,7 @@ angular.module('beacons.controller', ['beacons.services', 'ngCordovaBeacon'])
             $scope.userId = data;
             if (data != null) {
               Beacon.downloadExercises().save({userId: data}, assignment);
-              $scope.exercises.forEach(function(element) {
+              $scope.exercises.forEach(function (element) {
                 element.checked = false;
               });
             }
@@ -77,19 +82,19 @@ angular.module('beacons.controller', ['beacons.services', 'ngCordovaBeacon'])
           });
       }
 
-      $scope.searchBeacons = function() {
+      $scope.searchBeacons = function () {
         $scope.searchingBeacons = true;
         $scope.exercises = [];
         $cordovaBeacon.startRangingBeaconsInRegion($cordovaBeacon.createBeaconRegion("estimote", "b9407f30-f5f8-466e-aff9-25556b57fe6d"));
       };
 
-      $scope.stopBeacons = function() {
+      $scope.stopBeacons = function () {
         $scope.searchingBeacons = false;
         $cordovaBeacon.stopRangingBeaconsInRegion($cordovaBeacon.createBeaconRegion("estimote", "b9407f30-f5f8-466e-aff9-25556b57fe6d"));
       };
 
-      $scope.bluetoothSwitch = function() {
-        if($scope.bluetoothActive) {
+      $scope.bluetoothSwitch = function () {
+        if ($scope.bluetoothActive) {
           $scope.bluetoothActive = false;
           alert('Bluetooth deactivated!');
         } else {
